@@ -1,0 +1,6 @@
+Primeiro crie o BD a partir do .mwb Banco de Dados.
+Insira os dados a partir dos inserts no arquivo Data Banco de Dados.sql
+Insira o projeto no NetBeans e a partir do F6 abra o programa.
+O usuário é administrador e a senha é administrador.
+Qualquer dúvida pode mandar no email guilhermehtk@hotmail.com ou Facebook.
+http://prezi.com/wvtjdw4rgww9/?utm_campaign=share&utm_medium=copy&rc=ex0share
