@@ -1,10 +1,10 @@
 package model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Servico_OS {
@@ -30,7 +30,7 @@ public class Servico_OS {
         return cod;
     }
 
-    @OneToOne
+    @ManyToOne
     public Servico getSvcCod() {
         return svcCod;
     }
@@ -39,7 +39,7 @@ public class Servico_OS {
         this.svcCod = svcCod;
     }
 
-    @OneToOne
+    @ManyToOne
     public OrdemServico getOsCod() {
         return osCod;
     }
@@ -48,7 +48,7 @@ public class Servico_OS {
         this.osCod = osCod;
     }
 
-    @OneToOne
+    @ManyToOne
     public Funcionario getMecCod() {
         return mecCod;
     }

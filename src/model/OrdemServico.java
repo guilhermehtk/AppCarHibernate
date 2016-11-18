@@ -90,6 +90,4 @@ public class OrdemServico implements Serializable {
         this.carro = carro;
     }
 
-
-
 }

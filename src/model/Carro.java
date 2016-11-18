@@ -1,11 +1,14 @@
 package model;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import org.hibernate.annotations.Cascade;
 
 @Entity
 public class Carro implements Serializable {
@@ -20,6 +23,7 @@ public class Carro implements Serializable {
     private String placa;
     private String obs;
     private Cliente dono;
+    private List<OrdemServico> ordens;
 
     public Carro() {
 
@@ -112,7 +116,7 @@ public class Carro implements Serializable {
         this.obs = obs;
     }
 
-    @OneToOne
+    @ManyToOne
     public model.Cliente getDono() {
         return dono;
     }
@@ -120,5 +124,17 @@ public class Carro implements Serializable {
     public void setDono(model.Cliente dono) {
         this.dono = dono;
     }
+
+      @OneToMany(mappedBy="carro",cascade={CascadeType.ALL})
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
+    public List<OrdemServico> getOrdens() {
+        return ordens;
+    }
+
+    public void setOrdens(List<OrdemServico> ordens) {
+        this.ordens = ordens;
+    }
+    
+    
 
 }
