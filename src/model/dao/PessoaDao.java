@@ -23,9 +23,8 @@ public class PessoaDao implements InterfaceDao {
     }
 
     public void remove(int id) {
-        Pessoa pessoa = manager.find(Pessoa.class, id);
-        manager.getTransaction().begin();
-        manager.remove(pessoa);
+       manager.getTransaction().begin();
+        manager.remove(manager.getReference(Pessoa.class, id));
         manager.getTransaction().commit();
     }
 

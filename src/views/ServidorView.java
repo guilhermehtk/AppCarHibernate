@@ -169,6 +169,7 @@ public class ServidorView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_buttonRestartActionPerformed
 
     private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
+     this.close();
         this.dispose();
     }//GEN-LAST:event_buttonCancelarActionPerformed
 

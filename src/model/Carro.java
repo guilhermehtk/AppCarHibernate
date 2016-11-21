@@ -125,7 +125,7 @@ public class Carro implements Serializable {
         this.dono = dono;
     }
 
-      @OneToMany(mappedBy="carro",cascade={CascadeType.ALL})
+    @OneToMany(mappedBy="carro",cascade={CascadeType.ALL})
     @Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
     public List<OrdemServico> getOrdens() {
         return ordens;

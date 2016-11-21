@@ -23,9 +23,8 @@ public class Servico_OSDao implements InterfaceDao {
     }
 
     public void remove(int id) {
-        Servico_OS servico_os = manager.find(Servico_OS.class, id);
         manager.getTransaction().begin();
-        manager.remove(servico_os);
+        manager.remove(manager.getReference(Servico_OS.class, id));
         manager.getTransaction().commit();
     }
 

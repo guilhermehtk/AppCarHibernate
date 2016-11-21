@@ -81,6 +81,7 @@ public class CarroView extends javax.swing.JInternalFrame {
         comboResultados.setModel(carControl.procurar(comboTipo.getSelectedIndex()));
         comboDono.setModel(cliControl.procurar(comboTipoDono.getSelectedIndex()));
         comboResultados.setSelectedIndex(0);
+        
     }
 
     private boolean valida() {
@@ -176,7 +177,7 @@ public class CarroView extends javax.swing.JInternalFrame {
         carro.setModelo(cbModelo.getSelectedItem().toString());
         carro.setObs(tfObs.getText());
         carro.setPlaca(tfPlaca.getText());
-        if (comboDono.getSelectedIndex() != 0) {
+        if (comboDono.getSelectedIndex() > 0) {
             carro.setDono(clientes.get(comboDono.getSelectedIndex() - 1));
         }
         return carro;
@@ -716,6 +717,7 @@ public class CarroView extends javax.swing.JInternalFrame {
         if ((comboResultados.getSelectedIndex() != 0) && (comboResultados.getSelectedIndex() != -1)) {
             this.preencher(carros.get(comboResultados.getSelectedIndex() - 1));
             this.editable(false);
+            this.enableButton(buttonAdicionar,buttonEditar,buttonExcluir);
         }
     }//GEN-LAST:event_comboResultadosItemStateChanged
 

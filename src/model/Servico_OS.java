@@ -4,20 +4,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Servico_OS {
 
     private int cod;
-    private Servico svcCod;
-    private OrdemServico osCod;
-    private Funcionario mecCod;
+    private Servico servico;
+    private OrdemServico ordemservico;
+    private Funcionario funcionario;
 
-    public Servico_OS(Servico svcCod, OrdemServico osCod, Funcionario mecCod) {
-        this.svcCod = svcCod;
-        this.osCod = osCod;
-        this.mecCod = mecCod;
+    public Servico_OS(Servico servico, OrdemServico osCod, Funcionario mecCod) {
+        this.servico = servico;
+        this.ordemservico = osCod;
+        this.funcionario = mecCod;
     }
 
     public Servico_OS() {
@@ -30,35 +29,35 @@ public class Servico_OS {
         return cod;
     }
 
-    @ManyToOne
-    public Servico getSvcCod() {
-        return svcCod;
-    }
-
-    public void setSvcCod(Servico svcCod) {
-        this.svcCod = svcCod;
-    }
-
-    @ManyToOne
-    public OrdemServico getOsCod() {
-        return osCod;
-    }
-
-    public void setOsCod(OrdemServico osCod) {
-        this.osCod = osCod;
-    }
-
-    @ManyToOne
-    public Funcionario getMecCod() {
-        return mecCod;
-    }
-
-    public void setMecCod(Funcionario mecCod) {
-        this.mecCod = mecCod;
-    }
-
     public void setCod(int cod) {
         this.cod = cod;
+    }
+
+    @ManyToOne
+    public Servico getServico() {
+        return servico;
+    }
+
+    public void setServico(Servico servico) {
+        this.servico = servico;
+    }
+
+    @ManyToOne
+    public OrdemServico getOrdemservico() {
+        return ordemservico;
+    }
+
+    public void setOrdemservico(OrdemServico ordemservico) {
+        this.ordemservico = ordemservico;
+    }
+
+    @ManyToOne
+    public Funcionario getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
     }
 
 }

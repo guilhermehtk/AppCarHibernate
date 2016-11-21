@@ -23,9 +23,8 @@ public class EnderecoDao implements InterfaceDao {
     }
 
     public void remove(int id) {
-        Endereco endereco = manager.find(Endereco.class, id);
-        manager.getTransaction().begin();
-        manager.remove(endereco);
+      manager.getTransaction().begin();
+        manager.remove(manager.getReference(Endereco.class, id));
         manager.getTransaction().commit();
     }
 

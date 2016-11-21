@@ -34,7 +34,7 @@ public class Funcionario extends Pessoa implements Serializable {
         this.login = login;
     }
 
-      @OneToMany(mappedBy="mecCod",cascade={CascadeType.ALL})
+      @OneToMany(mappedBy="funcionario",cascade={CascadeType.ALL})
     @Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
     public List<Servico_OS> getServicosRealizados() {
         return servicosRealizados;

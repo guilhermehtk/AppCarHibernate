@@ -52,7 +52,7 @@ public class Servico implements Serializable {
         this.descricao = descricao;
     }
     
-    @OneToMany(mappedBy="svcCod",cascade={CascadeType.ALL})
+    @OneToMany(mappedBy="servico",cascade={CascadeType.ALL})
     @Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
     public List<Servico_OS> getServicosRealizados() {
         return servicosRealizados;

@@ -644,14 +644,15 @@ public class ClienteView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_comboTipoActionPerformed
 
     private void comboResultadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboResultadosActionPerformed
-        if ((comboResultados.getSelectedIndex() != 0) && (comboResultados.getSelectedIndex() != -1)) {
+        if (comboResultados.getSelectedIndex() > 0) {
             this.preencher(clientes.get(comboResultados.getSelectedIndex() - 1));
             this.editable(false);
+            this.enableButton(buttonAdicionar,buttonEditar,buttonExcluir);
         }
     }//GEN-LAST:event_comboResultadosActionPerformed
 
     private void buttonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarActionPerformed
-        if (comboResultados.getSelectedIndex() != 0) {
+        if (comboResultados.getSelectedIndex() > 0) {
             this.editable(true);
             this.disableButton(buttonEditar, buttonAdicionar, buttonExcluir);
         } else {
@@ -660,7 +661,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_buttonEditarActionPerformed
 
     private void buttonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirActionPerformed
-        if (comboResultados.getSelectedIndex() != 0) {
+        if (comboResultados.getSelectedIndex() > 0) {
             cliControl.remove(clientes.get(comboResultados.getSelectedIndex() - 1).getCodigo());
             this.editable(false);
             this.limpar();

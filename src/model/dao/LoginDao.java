@@ -23,9 +23,8 @@ public class LoginDao implements InterfaceDao {
     }
 
     public void remove(int id) {
-        Login login = manager.find(Login.class, id);
         manager.getTransaction().begin();
-        manager.remove(login);
+        manager.remove(manager.getReference(Login.class, id));
         manager.getTransaction().commit();
     }
 

@@ -2,7 +2,6 @@ package control;
 
 import java.util.ArrayList;
 import model.dao.Servico_OSDao;
-import model.Servico;
 import model.Servico_OS;
 
 public class Servico_OSController implements InterfaceControllerCrud {
@@ -43,13 +42,13 @@ public class Servico_OSController implements InterfaceControllerCrud {
     public ArrayList<String> valida(Object ser) {
         Servico_OS serv = (Servico_OS) ser;
         ArrayList<String> erros = new ArrayList();
-        if (serv.getOsCod()== null) {
+        if (serv.getOrdemservico()== null) {
             erros.add("Código da OS");
         }
-        if (serv.getMecCod() == null) {
+        if (serv.getFuncionario()== null) {
             erros.add("Código do Funcionário");
         }
-        if (serv.getSvcCod() == null) {
+        if (serv.getServico() == null) {
             erros.add("Código do Serviço");
         }
         return erros;

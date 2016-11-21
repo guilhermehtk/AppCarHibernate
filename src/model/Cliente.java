@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import org.hibernate.annotations.Cascade;
 
@@ -23,7 +24,7 @@ public class Cliente extends Pessoa implements Serializable {
         super(nome, cpf, sexo, email, telefoneM, telefoneF, endereco, rg);
     }
 
-    @OneToMany(mappedBy = "dono", cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "dono", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     @Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
     public List<Carro> getCarros() {
         return carros;

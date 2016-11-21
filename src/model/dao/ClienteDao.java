@@ -23,9 +23,8 @@ public class ClienteDao implements InterfaceDao {
     }
 
     public void remove(int id) {
-        Cliente cliente = manager.find(Cliente.class, id);
-        manager.getTransaction().begin();
-        manager.remove(cliente);
+          manager.getTransaction().begin();
+        manager.remove(manager.getReference(Cliente.class, id));
         manager.getTransaction().commit();
     }
 

@@ -18,6 +18,7 @@ public class LoginView extends javax.swing.JFrame {
     }
 
     private void login() {
+
         Login login = new Login(campoLogin.getText(), String.valueOf(campoSenha.getPassword()));
         int flag = loginController.validaLogin(login);
         if (flag == 0) {
@@ -142,7 +143,6 @@ public class LoginView extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonEntrarActionPerformed
 
     private void buttonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSairActionPerformed
-
         System.exit(0);
     }//GEN-LAST:event_buttonSairActionPerformed
 

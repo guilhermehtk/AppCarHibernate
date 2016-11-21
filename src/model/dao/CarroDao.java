@@ -23,9 +23,8 @@ public class CarroDao implements InterfaceDao {
     }
 
     public void remove(int id) {
-        Carro carro = manager.find(Carro.class, id);
         manager.getTransaction().begin();
-        manager.remove(carro);
+        manager.remove(manager.getReference(Carro.class, id));
         manager.getTransaction().commit();
     }
 

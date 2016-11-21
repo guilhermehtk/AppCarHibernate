@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2016-11-20T22:08:36 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="servicos" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ac7f2809-ccad-4c42-a169-f53ce45a5c2e">
-	<property name="com.jaspersoft.studio.data.sql.tables" value="YXBwY2FyLnNlcnZpY29zIEFTICwxNTMsMTU0LDVmODcwNGNmLTFjODAtNGUwMy04OGFmLThmZTRk
-N2ZjOTI5Mjs="/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value="YXBwY2FyLnNlcnZpY29zIEFTICwxNTMsMTU0LDVmODcwNGNmLTFjODAtNGUwMy04OGFmLThmZTRk N2ZjOTI5Mjs="/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<queryString>
-		<![CDATA[SELECT appcar.servicos.`svcDescricao`,
-	appcar.servicos.`svcValor`,
-	appcar.servicos.`svcCod`
-FROM appcar.servicos]]>
+		<![CDATA[SELECT appcarhibernate.servico.cod,
+	appcarhibernate.servico.descricao,
+	appcarhibernate.servico.valor
+FROM appcarhibernate.servico]]>
 	</queryString>
-	<field name="svcDescricao" class="java.lang.String"/>
-	<field name="svcValor" class="java.lang.Double"/>
-	<field name="svcCod" class="java.lang.Integer"/>
+	<field name="descricao" class="java.lang.String"/>
+	<field name="valor" class="java.lang.Double"/>
+	<field name="cod" class="java.lang.Integer"/>
 	<background>
 		<band/>
 	</background>
@@ -100,7 +101,7 @@ FROM appcar.servicos]]>
 				<textElement textAlignment="Center">
 					<font size="14"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{svcCod}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{cod}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="90" y="0" width="293" height="20" uuid="8662bab9-d815-4a8e-ab60-4151eebda7f0"/>
@@ -113,7 +114,7 @@ FROM appcar.servicos]]>
 				<textElement textAlignment="Center">
 					<font size="14"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{svcDescricao}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="¤#,##0.00#;¤-#,##0.00#">
 				<reportElement stretchType="RelativeToTallestObject" x="383" y="0" width="172" height="20" uuid="6ff33f9a-a437-4276-a660-35d029a82b59"/>
@@ -126,7 +127,7 @@ FROM appcar.servicos]]>
 				<textElement textAlignment="Center">
 					<font size="14"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{svcValor}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

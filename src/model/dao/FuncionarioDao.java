@@ -23,9 +23,8 @@ public class FuncionarioDao implements InterfaceDao {
     }
 
     public void remove(int id) {
-        Funcionario funcionario = manager.find(Funcionario.class, id);
-        manager.getTransaction().begin();
-        manager.remove(funcionario);
+         manager.getTransaction().begin();
+        manager.remove(manager.getReference(Funcionario.class, id));
         manager.getTransaction().commit();
     }
 

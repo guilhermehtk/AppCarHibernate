@@ -23,9 +23,8 @@ public class OrdemServicoDao implements InterfaceDao {
     }
 
     public void remove(int id) {
-        OrdemServico ordemservico = manager.find(OrdemServico.class, id);
         manager.getTransaction().begin();
-        manager.remove(ordemservico);
+        manager.remove(manager.getReference(OrdemServico.class, id));
         manager.getTransaction().commit();
     }
 

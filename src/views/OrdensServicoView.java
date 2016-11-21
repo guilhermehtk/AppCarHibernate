@@ -167,7 +167,7 @@ public class OrdensServicoView extends javax.swing.JInternalFrame {
 
     private ArrayList<Servico> getServicosOS(int os) {
         for (Servico_OS ser : serOS.getAllOS(os)) {
-            Servico servico = serControl.get(ser.getSvcCod().getCod());
+            Servico servico = ser.getServico();
             servicos.add(servico);
         }
         return servicos;
@@ -211,7 +211,7 @@ public class OrdensServicoView extends javax.swing.JInternalFrame {
             os.setCarro(carros.get(comboSelectCarro.getSelectedIndex() - 1));
         }
         if (comboSelectCliente.getSelectedIndex() <= 0) {
-            os.setCarro(null);
+            os.setCliente(null);
         } else {
             os.setCliente(clientes.get(comboSelectCliente.getSelectedIndex() - 1));
         }
@@ -269,7 +269,7 @@ public class OrdensServicoView extends javax.swing.JInternalFrame {
 
     private void addServicos_OS(int osCod) {
         for (Servico ser : servicos) {
-            Servico_OS os = new Servico_OS(ser, new OrdemServicoController().get(osCod),new FuncionarioController().get(funcionario));
+            Servico_OS os = new Servico_OS(ser, osControl.get(osCod), new FuncionarioController().get(funcionario));
             serOS.add(os);
         }
     }
@@ -794,7 +794,7 @@ public class OrdensServicoView extends javax.swing.JInternalFrame {
 
     private void buttonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvarActionPerformed
         if (this.valida()) {
-            if (comboResultados.getSelectedIndex() == 0) {
+            if (comboResultados.getSelectedIndex() <= 0) {
                 int id = osControl.add(newOS());
                 this.addServicos_OS(id);
                 if (id != 0) {
@@ -814,7 +814,7 @@ public class OrdensServicoView extends javax.swing.JInternalFrame {
 
     private void buttonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLimparActionPerformed
         this.limpar();
-        this.enableButton(buttonAdicionar,buttonExcluir,buttonEditar);
+        this.enableButton(buttonAdicionar, buttonExcluir, buttonEditar);
     }//GEN-LAST:event_buttonLimparActionPerformed
 
     private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
@@ -822,7 +822,7 @@ public class OrdensServicoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_buttonCancelarActionPerformed
 
     private void buttonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarActionPerformed
-        if (comboResultados.getSelectedIndex() != 0) {
+        if (comboResultados.getSelectedIndex() > 0) {
             this.editable(true);
             this.disableButton(buttonEditar, buttonAdicionar, buttonExcluir);
         } else {
@@ -831,8 +831,8 @@ public class OrdensServicoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_buttonEditarActionPerformed
 
     private void buttonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirActionPerformed
-        if (comboResultados.getSelectedIndex() != 0) {
-            for (Servico_OS serv : serOS.getAllOS(carros.get(comboResultados.getSelectedIndex() - 1).getCod())) {
+        if (comboResultados.getSelectedIndex() > 0) {
+            for (Servico_OS serv : serOS.getAllOS(ordens.get(comboSelectCarro.getSelectedIndex() - 1).getCod())) {
                 serOS.remove(serv.getCod());
             }
             osControl.remove(ordens.get(comboResultados.getSelectedIndex() - 1).getCod());
@@ -849,9 +849,10 @@ public class OrdensServicoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tfDescricaoActionPerformed
 
     private void comboResultadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboResultadosActionPerformed
-        if ((comboResultados.getSelectedIndex() != 0) && (comboResultados.getSelectedIndex() != -1)) {
+        if (comboResultados.getSelectedIndex() > 0) {
             this.preencher(ordens.get(comboResultados.getSelectedIndex() - 1));
             this.editable(false);
+            this.enableButton(buttonAdicionar, buttonEditar, buttonExcluir);
         }
     }//GEN-LAST:event_comboResultadosActionPerformed
 
@@ -890,7 +891,7 @@ public class OrdensServicoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_buttonGerarReciboActionPerformed
 
     private void buttonGerarOrcamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGerarOrcamentoActionPerformed
-        if (cbSituacao.getSelectedIndex() == 0) {
+        if (cbSituacao.getSelectedIndex() >= 0) {
             RelatorioController.geraRelatorioOrcamento(Integer.parseInt(labelCodigo.getText()), this);
         } else {
             JOptionPane.showMessageDialog(this, "O.S não é orçamento", "Alerta", JOptionPane.WARNING_MESSAGE);

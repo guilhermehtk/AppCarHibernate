@@ -23,9 +23,8 @@ public class ServicoDao implements InterfaceDao {
     }
 
     public void remove(int id) {
-        Servico servico = manager.find(Servico.class, id);
-        manager.getTransaction().begin();
-        manager.remove(servico);
+         manager.getTransaction().begin();
+        manager.remove(manager.getReference(Servico.class, id));
         manager.getTransaction().commit();
     }
 
