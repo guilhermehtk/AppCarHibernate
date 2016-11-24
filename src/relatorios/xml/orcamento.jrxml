@@ -7,75 +7,75 @@
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
 	<parameter name="osCod" class="java.lang.Integer"/>
 	<queryString>
-		<![CDATA[SELECT appcar.servicos.`svcDescricao`,
-	appcar.servicos.`svcValor`,
-	appcar.servicos.`svcCod`,
-	appcar.ordemservicos.`osData`,
-	appcar.ordemservicos.`osDescricao`,
-	appcar.ordemservicos.`osTipo`,
-	appcar.ordemservicos.`osCod`,
-	appcar.carros.`carCod`,
-	appcar.carros.`carMarca`,
-	appcar.carros.`carModelo`,
-	appcar.carros.`carPlaca`,
-	appcar.pessoas.`pesNome`,
-	appcar.pessoas.`pesCod`,
-	appcar.pessoas.`pesCpf`
-FROM appcar.servicos_os
-	INNER JOIN appcar.ordemservicos ON 
-	 appcar.servicos_os.`ser_osCod` = appcar.ordemservicos.`osCod` 
-	INNER JOIN appcar.servicos ON 
-	 appcar.servicos_os.`ser_svcCod` = appcar.servicos.`svcCod` 
-	INNER JOIN appcar.carros ON 
-	 appcar.ordemservicos.`os_carCod` = appcar.carros.`carCod` 
-	INNER JOIN appcar.pessoas ON 
-	 appcar.ordemservicos.`os_cliCod` = appcar.pessoas.`pesCod`
+		<![CDATA[SELECT appcarhibernate.servicos.descricao,
+	appcarhibernate.servico.valor,
+	appcarhibernate.servico.cod as svcCod,
+	appcarhibernate.ordemservico.data,
+	appcarhibernate.ordemservico.descricao,
+	appcarhibernate.ordemservico.tipo,
+	appcarhibernate.ordemservico.cod as osCod,
+	appcarhibernate.carro.cod as carCod,
+	appcarhibernate.carro.marca,
+	appcarhibernate.carro.modelo,
+	appcarhibernate.carro.placa,
+        appcarhibernate.cliente.codigo,
+	appcarhibernate.pessoa.nome,
+	appcarhibernate.pessoa.cpf
+FROM appcarhibernate.servico_os
+	INNER JOIN appcarhibernate.ordemservico ON 
+	 appcarhibernate.servico_os.ordemservico_cod = appcarhibernate.ordemservico.cod 
+	INNER JOIN appcarhibernate.servico ON 
+	 appcarhibernate.servico_os.servico_cod = appcarhibernate.servico.cod 
+	INNER JOIN appcarhibernate.carro ON 
+	 appcarhibernate.ordemservico.carro_cod = appcarhibernate.carro.cod 
+	INNER JOIN appcarhibernate.pessoa ON 
+	 appcar.ordemservico.cliente_codigo = appcarhibernate.pessoa.codigo
 where osCod=$P{osCod}]]>
 	</queryString>
-	<field name="svcDescricao" class="java.lang.String">
+	<field name="descricao" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="svcValor" class="java.lang.Double">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="svcCod" class="java.lang.Integer">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="osData" class="java.sql.Timestamp">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="osDescricao" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="osTipo" class="java.lang.String">
+	<field name="valor" class="java.lang.Double">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="osCod" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="data" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="descricao" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tipo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="svcCod" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<field name="carCod" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="carMarca" class="java.lang.String">
+	<field name="marca" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="carModelo" class="java.lang.String">
+	<field name="modelo" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="carPlaca" class="java.lang.String">
+	<field name="placa" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="pesNome" class="java.lang.String">
+	<field name="nome" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="pesCod" class="java.lang.Integer">
+	<field name="codigo" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="pesCpf" class="java.lang.String">
+	<field name="cpf" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<variable name="valorTotal" class="java.lang.Float" calculation="Sum">
-		<variableExpression><![CDATA[$F{svcValor}]]></variableExpression>
+		<variableExpression><![CDATA[$F{valor}]]></variableExpression>
 		<initialValueExpression><![CDATA[0]]></initialValueExpression>
 	</variable>
 	<background>
@@ -97,7 +97,7 @@ where osCod=$P{osCod}]]>
 					<textElement>
 						<font size="14"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{pesNome}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
 				</textField>
 				<rectangle>
 					<reportElement x="9" y="66" width="563" height="30" backcolor="#FFFFFF" uuid="6d1fa1dc-4bd0-4b6b-8bad-50626d881604"/>
@@ -107,7 +107,7 @@ where osCod=$P{osCod}]]>
 					<textElement textAlignment="Left">
 						<font size="12"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{osData}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{data}]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement mode="Opaque" x="430" y="72" width="39" height="16" forecolor="#020B0F" backcolor="#FFFFFF" uuid="41fa7891-71ac-46b5-a7c6-3ac932cf09c0"/>
@@ -141,7 +141,7 @@ where osCod=$P{osCod}]]>
 					<textElement>
 						<font size="14"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{pesCpf}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{cpf}]]></textFieldExpression>
 				</textField>
 				<rectangle>
 					<reportElement x="10" y="151" width="562" height="26" uuid="1bd46267-c529-4bbf-a21e-bdbf12e335cf"/>
@@ -164,7 +164,7 @@ where osCod=$P{osCod}]]>
 					<textElement>
 						<font size="14"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{pesCod}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement mode="Opaque" x="19" y="72" width="100" height="16" forecolor="#000305" backcolor="#FFFFFF" uuid="17b1888a-e37b-4673-b588-136e546fc811"/>
@@ -185,7 +185,7 @@ where osCod=$P{osCod}]]>
 					<textElement textAlignment="Left">
 						<font size="14"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{carMarca}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{marca}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
 					<reportElement x="82" y="180" width="152" height="20" forecolor="#FFFCFC" uuid="3ee38a82-5918-4f8b-8c34-b021f9de5440"/>
@@ -199,14 +199,14 @@ where osCod=$P{osCod}]]>
 					<textElement textAlignment="Left">
 						<font size="14"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{carModelo}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{modelo}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
 					<reportElement x="300" y="202" width="268" height="20" forecolor="#FFFCFC" uuid="d1e52eec-ff0d-4a7c-bb8d-d8fbb208c94e"/>
 					<textElement textAlignment="Left">
 						<font size="14"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{carPlaca}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{placa}]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement mode="Opaque" x="20" y="126" width="60" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="59b2fe53-7440-4024-a701-8023290fb0d7"/>
@@ -305,7 +305,7 @@ where osCod=$P{osCod}]]>
 					<font size="14"/>
 					<paragraph lineSpacing="Single" firstLineIndent="10" leftIndent="5" rightIndent="5" spacingBefore="5" spacingAfter="0"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{osDescricao} + "\n"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{descricao} + "\n"]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement positionType="Float" mode="Opaque" x="0" y="220" width="553" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="38b8ef24-f133-4216-8490-26a9026945bf">
@@ -386,7 +386,7 @@ where osCod=$P{osCod}]]>
 				<textElement textAlignment="Center">
 					<font size="14"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{svcDescricao}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="0" y="0" width="80" height="22" uuid="e934ef8c-25f6-4cbb-b426-8c03477439b3">
@@ -414,7 +414,7 @@ where osCod=$P{osCod}]]>
 				<textElement textAlignment="Center">
 					<font size="14"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{svcValor}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

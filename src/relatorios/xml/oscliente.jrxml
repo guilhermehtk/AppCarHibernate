@@ -5,38 +5,37 @@
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
 	<queryString>
-		<![CDATA[SELECT appcar.ordemservicos.`osCod`,
-	appcar.ordemservicos.`osTipo`,
-	appcar.ordemservicos.`osData`,
-	appcar.ordemservicos.`osDescricao`,
-	SUM(appcar.servicos.`svcValor`) as svcValor,
-	appcar.pessoas.`pesNome`,
-	appcar.pessoas.`pesEmail`,
-	appcar.pessoas.`pesCpf`,
-	appcar.pessoas.`pesCod`,
-	appcar.carros.`carPlaca`
-FROM appcar.servicos_os
-	INNER JOIN appcar.ordemservicos ON 
-	 appcar.servicos_os.`ser_osCod` = appcar.ordemservicos.`osCod` 
-	INNER JOIN appcar.servicos ON 
-	 appcar.servicos_os.`ser_svcCod` = appcar.servicos.`svcCod` 
-	INNER JOIN appcar.carros ON 
-	 appcar.ordemservicos.`os_carCod` = appcar.carros.`carCod` 
-	INNER JOIN appcar.pessoas ON 
-	 appcar.ordemservicos.`os_cliCod` = appcar.pessoas.`pesCod`
-	 
+		<![CDATA[SELECT appcar.ordemservicos.cod as osCod,
+	appcarhibernate.ordemservico.tipo,
+	appcarhibernate.ordemservico.data,
+	appcarhibernate.ordemservico.descricao,
+	SUM(appcarhibernate.servico.valor) as valor,
+	appcarhibernate.pessoa.nome,
+	appcarhibernate.pessoa.email,
+	appcarhibernate.pessoa.cpf,
+	appcarhibernate.pessoa.codigo,
+	appcarhibernate.carro.placa
+FROM appcarhibernate.servico_os
+	INNER JOIN appcarhibernate.ordemservico ON 
+	 appcarhibernate.servico_os.ordemservico_cod = appcarhibernate.ordemservico.cod
+	INNER JOIN appcar.servico ON 
+	 appcarhibernate.servico_os.servico_cod = appcarhibernate.servico.cod
+	INNER JOIN appcar.carro ON 
+	 appcarhibernate.ordemservico.carro_cod = appcarhibernate.carro.cod 
+	INNER JOIN appcar.pessoa ON 
+	 appcarhibernate.ordemservico.cliente_codigo = appcarhibernate.pessoa.codigo	 
 	  GROUP BY osCod]]>
 	</queryString>
 	<field name="osCod" class="java.lang.Integer"/>
-	<field name="osTipo" class="java.lang.String"/>
-	<field name="osData" class="java.sql.Timestamp"/>
-	<field name="osDescricao" class="java.lang.String"/>
-	<field name="svcValor" class="java.lang.Double"/>
-	<field name="carPlaca" class="java.lang.String"/>
-	<field name="pesCod" class="java.lang.Integer"/>
-	<field name="pesCpf" class="java.lang.String"/>
-	<field name="pesNome" class="java.lang.String"/>
-	<field name="pesEmail" class="java.lang.String"/>
+	<field name="tipo" class="java.lang.String"/>
+	<field name="data" class="java.sql.Timestamp"/>
+	<field name="descricao" class="java.lang.String"/>
+	<field name="valor" class="java.lang.Double"/>
+	<field name="placa" class="java.lang.String"/>
+	<field name="codigo" class="java.lang.Integer"/>
+	<field name="cpf" class="java.lang.String"/>
+	<field name="nome" class="java.lang.String"/>
+	<field name="email" class="java.lang.String"/>
 	<background>
 		<band/>
 	</background>
@@ -80,7 +79,7 @@ FROM appcar.servicos_os
 					<textElement>
 						<font size="14"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{pesCpf}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{cpf}]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement mode="Opaque" x="360" y="101" width="40" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="0b087527-7ff3-4e3b-8c34-744ae069392d"/>
@@ -113,14 +112,14 @@ FROM appcar.servicos_os
 					<textElement>
 						<font size="14"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{pesEmail}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
 					<reportElement x="67" y="101" width="287" height="20" forecolor="#FFFCFC" uuid="cadfcceb-5526-4dc7-ac8c-a500869033f1"/>
 					<textElement>
 						<font size="14"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{pesNome}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement mode="Opaque" x="348" y="73" width="70" height="16" forecolor="#000305" backcolor="#FFFFFF" uuid="4cb6eff8-bcf5-4a2b-bc8f-4f92f6a49e38"/>
@@ -140,7 +139,7 @@ FROM appcar.servicos_os
 					<textElement textAlignment="Left">
 						<font size="12"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{pesCod}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
 				</textField>
 				<image>
 					<reportElement x="500" y="5" width="84" height="56" uuid="4f6a9691-9b40-4b3d-94d0-140a21211572">
@@ -263,7 +262,7 @@ FROM appcar.servicos_os
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{osData}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{data}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="50" y="-1" width="79" height="20" uuid="8f56a6a8-0d2f-44a7-82bd-117e6b165514"/>
@@ -276,7 +275,7 @@ FROM appcar.servicos_os
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{osTipo}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{tipo}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="299" y="-1" width="165" height="20" uuid="8cbf8679-1d91-4e5f-8b76-4d9f742b708d"/>
@@ -289,7 +288,7 @@ FROM appcar.servicos_os
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{osDescricao}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="¤#,##0.00;¤-#,##0.00">
 				<reportElement x="464" y="-1" width="89" height="20" uuid="4f4984d1-623c-4547-a906-b25f0ce6ec17"/>
@@ -302,7 +301,7 @@ FROM appcar.servicos_os
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{svcValor}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="220" y="-1" width="79" height="20" uuid="09c08444-c550-43ae-bbae-72b6eb792563"/>
@@ -315,7 +314,7 @@ FROM appcar.servicos_os
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{carPlaca}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{placa}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

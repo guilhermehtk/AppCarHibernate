@@ -7,29 +7,29 @@
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
 	<parameter name="osCod" class="java.lang.Integer"/>
 	<queryString>
-		<![CDATA[SELECT appcar.servicos.`svcDescricao`,
-	appcar.servicos.`svcValor`,
-	appcar.servicos.`svcCod`,
-	appcar.ordemservicos.`osData`,
-	appcar.ordemservicos.`osDescricao`,
-	appcar.ordemservicos.`osTipo`,
-	appcar.ordemservicos.`osCod`,
-	appcar.carros.`carCod`,
-	appcar.carros.`carMarca`,
-	appcar.carros.`carModelo`,
-	appcar.carros.`carPlaca`,
-	appcar.pessoas.`pesNome`,
-	appcar.pessoas.`pesCod`,
-	appcar.pessoas.`pesCpf`
-FROM appcar.servicos_os
-	INNER JOIN appcar.ordemservicos ON 
-	 appcar.servicos_os.`ser_osCod` = appcar.ordemservicos.`osCod` 
-	INNER JOIN appcar.servicos ON 
-	 appcar.servicos_os.`ser_svcCod` = appcar.servicos.`svcCod` 
-	INNER JOIN appcar.carros ON 
-	 appcar.ordemservicos.`os_carCod` = appcar.carros.`carCod` 
-	INNER JOIN appcar.pessoas ON 
-	 appcar.ordemservicos.`os_cliCod` = appcar.pessoas.`pesCod`
+		<![CDATA[SELECT appcarhibernate.servico.svcDescricao,
+	appcarhibernate.servico.svcValor,
+	appcarhibernate.servico.svcCod,
+	appcarhibernate.ordemservico.osData,
+	appcarhibernate.ordemservico.osDescricao,
+	appcarhibernate.ordemservico.osTipo,
+	appcarhibernate.ordemservico.osCod,
+	appcarhibernate.carro.carCod,
+	appcarhibernate.carro.carMarca,
+	appcarhibernate.carro.carModelo,
+	appcarhibernate.carro.carPlaca,
+	appcarhibernate.pessoa.pesNome,
+	appcarhibernate.pessoa.pesCod,
+	appcarhibernate.pessoa.pesCpf
+FROM appcarhibernate.servico_os
+	INNER JOIN appcarhibernate.ordemservico ON 
+	 appcarhibernate.servico_os.ser_osCod = appcarhibernate.ordemservico.osCod
+	INNER JOIN appcarhibernate.servicos ON 
+	 appcarhibernate.servico_os.ser_svcCod = appcarhibernate.servico.svcCod 
+	INNER JOIN appcar.carro ON 
+	 appcarhibernate.ordemservico.os_carCod = appcarhibernate.carro.carCod 
+	INNER JOIN appcarhibernate.pessoa ON 
+	 appcarhibernate.ordemservico.os_cliCod = appcarhibernate.pessoa.pesCod
 where osCod=$P{osCod}]]>
 	</queryString>
 	<field name="svcDescricao" class="java.lang.String">
