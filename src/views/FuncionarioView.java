@@ -176,7 +176,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         endereco.setCep(campoCep.getText());
         funcionario.setEndereco(endereco);
         // Login
-        Login login = new Login();
+        Login login = funcionario.getLogin();
         login.setUsuario(campoLogin.getText());
         login.setSenha(BCrypt.hashpw(String.copyValueOf(campoConfirmaPassword.getPassword()), BCrypt.gensalt()));
         funcionario.setLogin(login);

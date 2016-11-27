@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2016-10-09T12:26:45 -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="OrdensServico" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="98821ec1-115f-4c1a-bdba-f54643b141aa">
-	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+<!-- 2016-11-27T12:23:01 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="oscliente" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="98821ec1-115f-4c1a-bdba-f54643b141aa">
+	<property name="com.jaspersoft.studio.data.sql.tables" value="YXBwY2FyaGliZXJuYXRlLm9yZGVtc2VydmljbyAsMTg0LDE1NywwYzVhODdjMC1kMjc1LTQyYmYt&#xA;OTYzZS04YTE4YjIwYjFiNDY7YXBwY2FyaGliZXJuYXRlLnBlc3NvYSAsMTUsMjUxLGI4NzI5MTM2&#xA;LTk5MGItNGRiNS05ZWJhLTE0NDhhMDUyMmIwNjthcHBjYXJoaWJlcm5hdGUuY2Fycm8gLDMyNywx&#xA;MzYsMDQ5M2E3OWEtMWQ3Yi00NzQyLTgyYjMtZmZkNzNmM2I5MTZhO2FwcGNhcmhpYmVybmF0ZS5z&#xA;ZXJ2aWNvICwxODQsMTUsZGQwMjc0OTctMWJhZC00NzZjLTg5NmQtZjM0YzllNWRlN2ZmO2FwcGNh&#xA;cmhpYmVybmF0ZS5zZXJ2aWNvX29zICwxNSw4MyxjNmU2ZDRkOC01ZmVmLTQyZjAtYjBhYi0zYTk5&#xA;ZGRiMjg2MzI7"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="AppCarHibernate"/>
+	<parameter name="codigo" class="java.lang.Integer"/>
 	<queryString>
-		<![CDATA[SELECT appcar.ordemservicos.cod as osCod,
+		<![CDATA[SELECT appcarhibernate.ordemservico.cod AS osCod,
 	appcarhibernate.ordemservico.tipo,
 	appcarhibernate.ordemservico.data,
 	appcarhibernate.ordemservico.descricao,
-	SUM(appcarhibernate.servico.valor) as valor,
+	SUM( appcarhibernate.servico.valor) AS valor,
 	appcarhibernate.pessoa.nome,
 	appcarhibernate.pessoa.email,
 	appcarhibernate.pessoa.cpf,
@@ -17,14 +18,16 @@
 	appcarhibernate.carro.placa
 FROM appcarhibernate.servico_os
 	INNER JOIN appcarhibernate.ordemservico ON 
-	 appcarhibernate.servico_os.ordemservico_cod = appcarhibernate.ordemservico.cod
-	INNER JOIN appcar.servico ON 
-	 appcarhibernate.servico_os.servico_cod = appcarhibernate.servico.cod
-	INNER JOIN appcar.carro ON 
+	 appcarhibernate.servico_os.ordemservico_cod = appcarhibernate.ordemservico.cod 
+	INNER JOIN appcarhibernate.servico ON 
+	 appcarhibernate.servico_os.servico_cod = appcarhibernate.servico.cod 
+	INNER JOIN appcarhibernate.carro ON 
 	 appcarhibernate.ordemservico.carro_cod = appcarhibernate.carro.cod 
-	INNER JOIN appcar.pessoa ON 
-	 appcarhibernate.ordemservico.cliente_codigo = appcarhibernate.pessoa.codigo	 
-	  GROUP BY osCod]]>
+	INNER JOIN appcarhibernate.pessoa ON 
+	 appcarhibernate.pessoa.codigo = appcarhibernate.ordemservico.cliente_codigo 
+WHERE 
+	 appcarhibernate.pessoa.codigo = $P{codigo} 
+GROUP BY appcarhibernate.ordemservico.cod]]>
 	</queryString>
 	<field name="osCod" class="java.lang.Integer"/>
 	<field name="tipo" class="java.lang.String"/>

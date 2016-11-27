@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2016-10-08T14:44:05 -->
+<!-- 2016-11-27T12:30:24 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Orcamento" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="44350c1c-c179-4933-b9fe-b11f894ecbb6">
-	<property name="com.jaspersoft.studio.data.sql.tables" value="YXBwY2FyLmNhcnJvcyBBUyAsMTgwLDIxMSwwMWE3OTNmNi0wNDVjLTQyZjgtOGMwNS04MjU1Y2Yw&#xA;OTU1Nzc7YXBwY2FyLnNlcnZpY29zX29zIEFTICwxNzYsNTAsZjZhNmEwNDgtNDEyYS00ZWFiLWFj&#xA;ZWUtNzdmODhjM2ZkOWI2O2FwcGNhci5wZXNzb2FzIEFTICwzNCwyMzAsOWJkZDJhODctZjZkYy00&#xA;ODQwLWEwNGYtOThkZjlhNzk3M2RhO2FwcGNhci5zZXJ2aWNvcyBBUyAsMzUsMTA2LGJjOTAxM2M1&#xA;LTlhYzYtNGMxMS1iNTUwLTMwMzEwNmU4M2EzZTthcHBjYXIub3JkZW1zZXJ2aWNvcyBBUyAsMzM5&#xA;LDc3LDA4OTNiZjM0LWU3YTYtNGZkYS05ODYxLTA4NmFkYThkM2U1Yjs="/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="AppCarHibernate"/>
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
 	<parameter name="osCod" class="java.lang.Integer"/>
 	<queryString>
-		<![CDATA[SELECT appcarhibernate.servicos.descricao,
+		<![CDATA[SELECT appcarhibernate.servico.descricao,
 	appcarhibernate.servico.valor,
-	appcarhibernate.servico.cod as svcCod,
+	appcarhibernate.servico.cod AS svcCod,
 	appcarhibernate.ordemservico.data,
-	appcarhibernate.ordemservico.descricao,
+	appcarhibernate.ordemservico.descricao as osDescricao,
 	appcarhibernate.ordemservico.tipo,
-	appcarhibernate.ordemservico.cod as osCod,
-	appcarhibernate.carro.cod as carCod,
+	appcarhibernate.ordemservico.cod AS osCod,
+	appcarhibernate.carro.cod AS carCod,
 	appcarhibernate.carro.marca,
 	appcarhibernate.carro.modelo,
 	appcarhibernate.carro.placa,
-        appcarhibernate.cliente.codigo,
 	appcarhibernate.pessoa.nome,
-	appcarhibernate.pessoa.cpf
+	appcarhibernate.pessoa.cpf,
+	appcarhibernate.pessoa.codigo
 FROM appcarhibernate.servico_os
 	INNER JOIN appcarhibernate.ordemservico ON 
 	 appcarhibernate.servico_os.ordemservico_cod = appcarhibernate.ordemservico.cod 
@@ -29,10 +29,14 @@ FROM appcarhibernate.servico_os
 	INNER JOIN appcarhibernate.carro ON 
 	 appcarhibernate.ordemservico.carro_cod = appcarhibernate.carro.cod 
 	INNER JOIN appcarhibernate.pessoa ON 
-	 appcar.ordemservico.cliente_codigo = appcarhibernate.pessoa.codigo
-where osCod=$P{osCod}]]>
+	 appcarhibernate.ordemservico.cliente_codigo = appcarhibernate.pessoa.codigo 
+WHERE 
+	 appcarhibernate.ordemservico.cod = $P{osCod}]]>
 	</queryString>
 	<field name="descricao" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="osDescricao" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="valor" class="java.lang.Double">
@@ -42,9 +46,6 @@ where osCod=$P{osCod}]]>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="data" class="java.sql.Timestamp">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="descricao" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="tipo" class="java.lang.String">
@@ -305,7 +306,7 @@ where osCod=$P{osCod}]]>
 					<font size="14"/>
 					<paragraph lineSpacing="Single" firstLineIndent="10" leftIndent="5" rightIndent="5" spacingBefore="5" spacingAfter="0"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{descricao} + "\n"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{osDescricao} + "\n"]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement positionType="Float" mode="Opaque" x="0" y="220" width="553" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="38b8ef24-f133-4216-8490-26a9026945bf">
