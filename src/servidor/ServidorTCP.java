@@ -114,6 +114,10 @@ public class ServidorTCP {
     }
 
     public String request(String request, JSONObject objeto) {
+        if(objeto.length()>1){
+            System.out.println("Tamanho:"+objeto.length());
+            
+        }
         switch (request) {
             // ------------------------------- GET all ------------------------- //
             case "get_Carro_All":
