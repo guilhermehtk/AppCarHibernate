@@ -111,6 +111,12 @@ public class ClienteView extends javax.swing.JInternalFrame {
     private Cliente newCliente() {
         Cliente cliente = new Cliente();
         cliente.setNome(campoNome.getText());
+        for (Cliente cliente1 : clientes) {
+            if (cliente1.getCpf().equals(campoCpf.getText())) {
+                JOptionPane.showMessageDialog(this, "CPF já existente", "Erro", JOptionPane.ERROR_MESSAGE);
+                return null;
+            }
+        }
         cliente.setCpf(campoCpf.getText());
         cliente.setRg(campoRg.getText().toUpperCase());
         cliente.setEmail(campoEmail.getText().toLowerCase());
@@ -131,6 +137,12 @@ public class ClienteView extends javax.swing.JInternalFrame {
 
     private Cliente alteraCliente(Cliente cliente) {
         cliente.setNome(campoNome.getText());
+        for (Cliente cliente1 : clientes) {
+            if (cliente1.getCpf().equals(campoCpf.getText())) {
+                JOptionPane.showMessageDialog(this, "CPF já existente", "Erro", JOptionPane.ERROR_MESSAGE);
+                return null;
+            }
+        }
         cliente.setCpf(campoCpf.getText());
         cliente.setRg(campoRg.getText());
         cliente.setEmail(campoEmail.getText());
@@ -608,7 +620,13 @@ public class ClienteView extends javax.swing.JInternalFrame {
         if (this.valida()) {
             if (comboResultados.getSelectedIndex() == 0) {
                 if (this.validaUnique()) {
-                    int id = cliControl.add(newCliente());
+                    Cliente cliente = newCliente();
+                    int id = 0;
+                    if (cliente != null) {
+                        id = cliControl.add(cliente);
+                    } else {
+                        return;
+                    }
                     if (id != 0) {
                         Mensagens.sucessoCreate();
                         this.enableButton(buttonEditar, buttonAdicionar, buttonExcluir);
@@ -616,7 +634,12 @@ public class ClienteView extends javax.swing.JInternalFrame {
                     }
                 }
             } else {
-                cliControl.altera(alteraCliente(clientes.get(comboResultados.getSelectedIndex() - 1)));
+                Cliente cliente2 = alteraCliente(clientes.get(comboResultados.getSelectedIndex() - 1));
+                if (cliente2 != null) {
+                    cliControl.altera(cliente2);
+                } else {
+                    return;
+                }
                 this.setClientesResultado(clientes.get(comboResultados.getSelectedIndex() - 1).getCodigo());
                 Mensagens.sucessoAlterar();
                 this.enableButton(buttonEditar, buttonAdicionar, buttonExcluir);
@@ -626,7 +649,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
 
     private void buttonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLimparActionPerformed
         this.limpar();
-        this.enableButton(buttonAdicionar,buttonExcluir,buttonEditar);
+        this.enableButton(buttonAdicionar, buttonExcluir, buttonEditar);
     }//GEN-LAST:event_buttonLimparActionPerformed
 
     private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
@@ -647,7 +670,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
         if (comboResultados.getSelectedIndex() > 0) {
             this.preencher(clientes.get(comboResultados.getSelectedIndex() - 1));
             this.editable(false);
-            this.enableButton(buttonAdicionar,buttonEditar,buttonExcluir);
+            this.enableButton(buttonAdicionar, buttonEditar, buttonExcluir);
         }
     }//GEN-LAST:event_comboResultadosActionPerformed
 
@@ -666,6 +689,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
             this.editable(false);
             this.limpar();
             this.preencheProcurar();
+            Mensagens.sucessoDelete();
         } else {
             JOptionPane.showMessageDialog(this, "Selecione algum cliente para excluir!", "Erro", JOptionPane.PLAIN_MESSAGE);
         }

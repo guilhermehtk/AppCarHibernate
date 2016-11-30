@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.6.24, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.12, for linux-glibc2.5 (x86_64)
 --
 -- Host: localhost    Database: appcarhibernate
 -- ------------------------------------------------------
--- Server version	5.7.14
+-- Server version	5.7.16-0ubuntu0.16.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -44,7 +44,7 @@ CREATE TABLE `carro` (
 
 LOCK TABLES `carro` WRITE;
 /*!40000 ALTER TABLE `carro` DISABLE KEYS */;
-INSERT INTO `carro` VALUES (1,'1221','1221','Branco ','21212','FIAT','Uno','Não há','SAS-2132',15),(2,'2016','120000','Preto  ','120000','Ford','KA','Não há','PXW-2165',25),(3,'1990','2500999','Vermelho ','2500999','JEEP','Outros','Rebaixado','MKV-7842',26),(4,'2001','12547800','Marrom/Bege ','12547800','FIAT','Uno','Não há','JUT-3524',27),(5,'2006','177000','Prata ','177000','Ford','KA','Não há','PPJ-6566',28),(6,'2013','2013','Prata ','200000','FIAT','Palio','Não há','OMH-0974',29),(7,'1995','450000','Vermelho ','450000','Ford','Escort Hobby','Não há','GPP-2733',30),(8,'2013','50000','Branco ','50000','GM - Chevrolet','Onix','Este é o carro do Pedro','PHM-9999',31),(9,'2012','12587000','Prata ','12587000','FIAT','Mobi','Carro do Gorazil\n','KJU-2520',32),(10,'1990','152000','Azul ','152000','Honda','Outros','Não há','JUJ-6523',33);
+INSERT INTO `carro` VALUES (1,'1221','1221','Branco ','21212','FIAT','Uno','Não há','SAS-2132',2),(2,'2016','120000','Preto  ','120000','Ford','KA','Não há','PXW-2165',3),(3,'1990','2500999','Vermelho ','2500999','JEEP','Outros','Rebaixado','MKV-7842',4),(4,'2001','12547800','Marrom/Bege ','12547800','FIAT','Uno','Não há','JUT-3524',5),(5,'2006','177000','Prata ','177000','Ford','KA','Não há','PPJ-6566',6),(6,'2013','2013','Prata ','200000','FIAT','Palio','Não há','OMH-0974',7),(7,'1995','450000','Vermelho ','450000','Ford','Escort Hobby','Não há','GPP-2733',8),(8,'2013','50000','Branco ','50000','GM - Chevrolet','Onix','Este é o carro do Pedro','PHM-9999',9),(9,'2012','12587000','Prata ','12587000','FIAT','Mobi','Carro do Gorazil\n','KJU-2520',10),(10,'1990','152000','Azul ','152000','Honda','Outros','Não há','JUJ-6523',11);
 /*!40000 ALTER TABLE `carro` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -177,7 +177,7 @@ CREATE TABLE `ordemservico` (
 
 LOCK TABLES `ordemservico` WRITE;
 /*!40000 ALTER TABLE `ordemservico` DISABLE KEYS */;
-INSERT INTO `ordemservico` VALUES (1,'2016-07-28 23:59:51','Carro',3,'Orçamento',1,15),(2,'2016-11-18 09:24:53','Ordem de serviço',3,'Revisão',2,29),(3,'2016-11-18 09:28:19','',0,'Concerto',3,25),(4,'2016-11-18 09:29:51','',0,'Trocas',4,26),(5,'2016-11-18 09:32:17','Lanternagem no carro',0,'Lanternagem',5,32),(6,'2016-11-18 09:33:50','Pintura',0,'Pintura',6,32),(7,'2016-11-18 09:35:18','Manutenção do carro',0,'Manutenção',7,33),(8,'2016-11-18 09:36:11','Troca de óleo',0,'Lanternagem',8,26),(9,'2016-11-18 09:36:54','Revisão ',0,'Revisão',9,15),(10,'2016-11-18 09:39:05','23412',0,'Manutenção',10,29);
+INSERT INTO `ordemservico` VALUES (1,'2016-07-28 23:59:51','Carro',3,'Orçamento',1,2),(2,'2016-11-18 09:24:53','Ordem de serviço',3,'Revisão',2,3),(3,'2016-11-18 09:28:19','',0,'Concerto',3,4),(4,'2016-11-18 09:29:51','',0,'Trocas',4,5),(5,'2016-11-18 09:32:17','Lanternagem no carro',0,'Lanternagem',5,6),(6,'2016-11-18 09:33:50','Pintura',0,'Pintura',6,7),(7,'2016-11-18 09:35:18','Manutenção do carro',0,'Manutenção',7,8),(8,'2016-11-18 09:36:11','Troca de óleo',0,'Lanternagem',8,9),(9,'2016-11-18 09:36:54','Revisão ',0,'Revisão',9,10),(10,'2016-11-18 09:39:05','23412',0,'Manutenção',10,11);
 /*!40000 ALTER TABLE `ordemservico` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -277,4 +277,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-11-27 11:26:59
+-- Dump completed on 2016-11-30  9:08:45

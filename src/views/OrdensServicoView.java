@@ -163,6 +163,20 @@ public class OrdensServicoView extends javax.swing.JInternalFrame {
             }
         }
         this.setServicosOS(this.getServicosOS(os.getCod()));
+        switch (cbSituacao.getSelectedIndex()) {
+            case 0:
+                buttonGerarOrcamento.setEnabled(true);
+                buttonGerarRecibo.setEnabled(false);
+                break;
+            case 1:
+                buttonGerarRecibo.setEnabled(true);
+                buttonGerarOrcamento.setEnabled(false);
+                break;
+            default:
+                buttonGerarOrcamento.setEnabled(false);
+                buttonGerarRecibo.setEnabled(false);
+                break;
+        }
     }
 
     private ArrayList<Servico> getServicosOS(int os) {
@@ -198,8 +212,6 @@ public class OrdensServicoView extends javax.swing.JInternalFrame {
         comboSelectCliente.setEnabled(flag);
         tableServicos.setEnabled(flag);
         cbSituacao.setEnabled(flag);
-        buttonGerarRecibo.setEnabled(!flag);
-        buttonGerarOrcamento.setEnabled(!flag);
     }
 
     private OrdemServico newOS() {
@@ -839,6 +851,7 @@ public class OrdensServicoView extends javax.swing.JInternalFrame {
             this.editable(false);
             this.limpar();
             this.preencheProcurar();
+            Mensagens.sucessoDelete();
         } else {
             JOptionPane.showMessageDialog(this, "Selecione alguma O.S para excluir!", "Erro", JOptionPane.ERROR_MESSAGE);
         }

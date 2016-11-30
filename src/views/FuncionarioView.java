@@ -135,6 +135,12 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
     private Funcionario newFuncionario() {
         Funcionario funcionario = new Funcionario();
         funcionario.setNome(campoNome.getText());
+        for (Funcionario fun1 : funcionarios) {
+            if (fun1.getCpf().equals(campoCpf.getText())) {
+                JOptionPane.showMessageDialog(this, "CPF já existente", "Erro", JOptionPane.ERROR_MESSAGE);
+                return null;
+            }
+        }
         funcionario.setCpf(campoCpf.getText());
         funcionario.setRg(campoRg.getText().toUpperCase());
         funcionario.setEmail(campoEmail.getText().toLowerCase());
@@ -160,6 +166,12 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
 
     private Funcionario alteraFuncionario(Funcionario funcionario) {
         funcionario.setNome(campoNome.getText());
+        for (Funcionario fun1 : funcionarios) {
+            if (fun1.getCpf().equals(campoCpf.getText())) {
+                JOptionPane.showMessageDialog(this, "CPF já existente", "Erro", JOptionPane.ERROR_MESSAGE);
+                return null;
+            }
+        }
         funcionario.setCpf(campoCpf.getText());
         funcionario.setRg(campoRg.getText());
         funcionario.setEmail(campoEmail.getText());
@@ -691,7 +703,13 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         if (this.valida() && this.validaLogin() && this.validaPassword() && this.validaConfirmaPassword()) {
             if (comboResultados.getSelectedIndex() == 0) {
                 if (this.validaUnique()) {
-                    int id = funControl.add(newFuncionario());
+                    Funcionario fun = newFuncionario();
+                    int id = 0;
+                    if (fun != null) {
+                        id = funControl.add(fun);
+                    } else {
+                        return;
+                    }
                     if (id != 0) {
                         Mensagens.sucessoCreate();
                         this.enableButton(buttonEditar, buttonAdicionar, buttonExcluir);
@@ -699,7 +717,13 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                     }
                 }
             } else {
-                funControl.altera(alteraFuncionario(funcionarios.get(comboResultados.getSelectedIndex() - 1)));
+                Funcionario fun2 = alteraFuncionario(funcionarios.get(comboResultados.getSelectedIndex() - 1));
+                if (fun2 != null) {
+                    funControl.altera(fun2);
+                } else {
+                    return;
+                }
+
                 this.setFuncionarioResultado(funcionarios.get(comboResultados.getSelectedIndex() - 1).getCodigo());
                 Mensagens.sucessoAlterar();
                 this.enableButton(buttonEditar, buttonAdicionar, buttonExcluir);
@@ -709,7 +733,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
 
     private void buttonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLimparActionPerformed
         this.limpar();
-        this.enableButton(buttonAdicionar,buttonExcluir,buttonEditar);
+        this.enableButton(buttonAdicionar, buttonExcluir, buttonEditar);
     }//GEN-LAST:event_buttonLimparActionPerformed
 
     private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
@@ -810,6 +834,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
             this.editable(false);
             this.limpar();
             this.preencheProcurar();
+            Mensagens.sucessoDelete();
         } else {
             JOptionPane.showMessageDialog(this, "Selecione algum funcionário para excluir!", "Erro", JOptionPane.ERROR_MESSAGE);
         }
@@ -819,7 +844,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         if (comboResultados.getSelectedIndex() > 0) {
             this.preencher(funcionarios.get(comboResultados.getSelectedIndex() - 1));
             this.editable(false);
-            this.enableButton(buttonAdicionar,buttonEditar,buttonExcluir);
+            this.enableButton(buttonAdicionar, buttonEditar, buttonExcluir);
         }
     }//GEN-LAST:event_comboResultadosActionPerformed
 

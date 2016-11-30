@@ -81,7 +81,6 @@ public class CarroView extends javax.swing.JInternalFrame {
         comboResultados.setModel(carControl.procurar(comboTipo.getSelectedIndex()));
         comboDono.setModel(cliControl.procurar(comboTipoDono.getSelectedIndex()));
         comboResultados.setSelectedIndex(0);
-        
     }
 
     private boolean valida() {
@@ -176,6 +175,12 @@ public class CarroView extends javax.swing.JInternalFrame {
         carro.setMarca(cbMarca.getSelectedItem().toString());
         carro.setModelo(cbModelo.getSelectedItem().toString());
         carro.setObs(tfObs.getText());
+        for (Carro carro1 : carros) {
+            if (carro1.getPlaca().equals(tfPlaca.getText())) {
+                JOptionPane.showMessageDialog(this, "CPF já existente", "Erro", JOptionPane.ERROR_MESSAGE);
+                return null;
+            }
+        }
         carro.setPlaca(tfPlaca.getText());
         if (comboDono.getSelectedIndex() > 0) {
             carro.setDono(clientes.get(comboDono.getSelectedIndex() - 1));
@@ -191,6 +196,12 @@ public class CarroView extends javax.swing.JInternalFrame {
         carro.setMarca(cbMarca.getSelectedItem().toString());
         carro.setModelo(cbModelo.getSelectedItem().toString());
         carro.setObs(tfObs.getText());
+        for (Carro carro1 : carros) {
+            if (carro1.getPlaca().equals(tfPlaca.getText())) {
+                JOptionPane.showMessageDialog(this, "CPF já existente", "Erro", JOptionPane.ERROR_MESSAGE);
+                return null;
+            }
+        }
         carro.setPlaca(tfPlaca.getText());
         if (comboDono.getSelectedIndex() <= 0) {
             carro.setDono(null);
@@ -619,7 +630,13 @@ public class CarroView extends javax.swing.JInternalFrame {
         if (this.valida()) {
             if (comboResultados.getSelectedIndex() == 0) {
                 if (this.validaUnique()) {
-                    int id = carControl.add(newCarro());
+                    int id = 0;
+                    Carro carro = newCarro();
+                    if (carro != null) {
+                        id = carControl.add(carro);
+                    } else {
+                        return;
+                    }
                     if (id != 0) {
                         this.enableButton(buttonEditar, buttonAdicionar, buttonExcluir);
                         Mensagens.sucessoCreate();
@@ -627,7 +644,12 @@ public class CarroView extends javax.swing.JInternalFrame {
                     }
                 }
             } else {
-                carControl.altera(alteraCarro(carros.get(comboResultados.getSelectedIndex() - 1)));
+                Carro car = alteraCarro(carros.get(comboResultados.getSelectedIndex() - 1));
+                if (car != null) {
+                    carControl.altera(car);
+                } else {
+                    return;
+                }
                 this.setCarroResultado(carros.get(comboResultados.getSelectedIndex() - 1).getCod());
                 Mensagens.sucessoAlterar();
                 this.enableButton(buttonEditar, buttonAdicionar, buttonExcluir);
@@ -644,7 +666,7 @@ public class CarroView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_buttonCancelarActionPerformed
 
     private void buttonAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdicionarActionPerformed
-        
+
         this.limpar();
         this.editable(true);
         this.disableButton(buttonEditar, buttonAdicionar, buttonExcluir);
@@ -677,6 +699,7 @@ public class CarroView extends javax.swing.JInternalFrame {
             this.editable(false);
             this.limpar();
             this.preencheProcurar();
+            Mensagens.sucessoDelete();
         } else {
             JOptionPane.showMessageDialog(this, "Selecione algum carro para excluir!", "Erro", JOptionPane.ERROR_MESSAGE);
         }
@@ -717,7 +740,7 @@ public class CarroView extends javax.swing.JInternalFrame {
         if ((comboResultados.getSelectedIndex() != 0) && (comboResultados.getSelectedIndex() != -1)) {
             this.preencher(carros.get(comboResultados.getSelectedIndex() - 1));
             this.editable(false);
-            this.enableButton(buttonAdicionar,buttonEditar,buttonExcluir);
+            this.enableButton(buttonAdicionar, buttonEditar, buttonExcluir);
         }
     }//GEN-LAST:event_comboResultadosItemStateChanged
 

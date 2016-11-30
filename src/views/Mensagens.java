@@ -26,6 +26,10 @@ public class Mensagens {
     public static void sucessoAlterar() {
         JOptionPane.showMessageDialog(null, "Alterado com Sucesso!", "Sucesso", JOptionPane.PLAIN_MESSAGE,icon);
     }
+    
+    public static void sucessoDelete() {
+        JOptionPane.showMessageDialog(null, "Deletado com Sucesso!", "Sucesso", JOptionPane.PLAIN_MESSAGE,icon);
+    }
 
     public static boolean errosValidacao(ArrayList<String> erros) {
         if (erros.isEmpty()) {
