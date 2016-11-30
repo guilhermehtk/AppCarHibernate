@@ -24,7 +24,11 @@ public class ServidorView extends javax.swing.JInternalFrame {
                     new Thread() {
                         public void run() {
                             server = new ServidorTCP(porta);
-                            server.esperaConexao();
+                            try {
+                                server.esperaConexao();
+                            } catch (IOException ex) {
+                                Logger.getLogger(ServidorView.class.getName()).log(Level.SEVERE, null, ex);
+                            }
                         }
                     }.start();
                     status.setEnabled(true);

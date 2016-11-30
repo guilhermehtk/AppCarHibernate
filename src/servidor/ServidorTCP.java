@@ -15,7 +15,6 @@ import model.Funcionario;
 import model.OrdemServico;
 import model.Servico;
 import model.Servico_OS;
-import servidor.json.JSONException;
 import servidor.json.JSONObject;
 import servidor.rest.CarroJSON;
 import servidor.rest.ClienteJSON;
@@ -45,53 +44,48 @@ public class ServidorTCP {
         System.out.println("Servidor Ligado");
     }
 
-    public void esperaConexao() {
+    public void esperaConexao() throws IOException {
         //laço infinito para esperar várias conexões
-        while (ss != null && ss.isBound() && !ss.isClosed()) {
-            try {
-                System.out.println("Esperando Conexoes");
+        while (ss != null) {
+
+            System.out.println("Esperando Conexoes");
                 //inicia processo de conexão
-                try {
-                    //aguarda conexões
-                    s = ss.accept();
-                    //buffer de leitura, classe io, poderia estar manipulando um arquivo    
-                    br = new BufferedReader(new InputStreamReader(s.getInputStream()));
-                    msgRecebida = br.readLine(); // recebendo dados do cliente como string    
-                    System.out.println("JSON do Cliente: \n" + msgRecebida + "\n");
 
-                    //cria prinstream para responder ao cliente
-                    ps = new PrintStream(s.getOutputStream());
+            //aguarda conexões
+            s = ss.accept();
 
-                    JSONObject json = new JSONObject(msgRecebida);
-                    JSONObject jsonResposta = new JSONObject();
+            //buffer de leitura, classe io, poderia estar manipulando um arquivo    
+            br = new BufferedReader(new InputStreamReader(s.getInputStream()));
+            msgRecebida = br.readLine(); // recebendo dados do cliente como string    
+            System.out.println("JSON do Cliente: \n" + msgRecebida + "\n");
 
-                    LoginController loginController = new LoginController();
-                    int flag = loginController.validaLogin(LoginJSON.getLoginJSON(json.getJSONObject("login")));
-                    // testa o login do usuário
-                    if (flag == 0) {
-                        System.out.println("Senha Incorreta");
-                        jsonResposta.put("login", "senha_incorreta");
-                    } else if (flag == 1) {
-                        System.out.println("Usuário Não Cadastrado");
-                        jsonResposta.put("login", "usuario_nao_cadastrado");
-                    } else {
-                        //se logar
-                        if (json.has("object")) {
-                            // tem objeto
-                            jsonResposta.put("return", this.request(json.getString("request"), json.getJSONObject("object")));
+            //cria prinstream para responder ao cliente
+            ps = new PrintStream(s.getOutputStream());
+
+            JSONObject json = new JSONObject(msgRecebida);
+
+            JSONObject jsonResposta = new JSONObject();
+
+            if (json.has("request")) {
+                if (json.get("request").equals("login")) {
+                    if (json.has("object")) {
+                        JSONObject login = json.getJSONObject("object").getJSONObject("login");
+                        int flag = LoginController.validaLogin(LoginJSON.getLoginJSON(login));
+                        System.out.println(flag);
+                        // testa o login do usuário
+                        if (flag == 0) {
+                            ps.println(new JSONObject().put("return", "password_incorrect"));
+                        } else if (flag < 0) {
+                            ps.println(new JSONObject().put("return", "user_not_found"));
                         } else {
-                            // não tem
-                            jsonResposta.put("return", this.request(json.getString("request"), null));
+                            ps.println(new JSONObject().put("return", "success"));
                         }
                     }
-                    //manda(responde) msg para o cliente
-                    ps.println(jsonResposta.toString());
-                    s.close();
-                    //System.gc();
-                } catch (IOException | JSONException e) {
-                }//fim da exeção do socket
-            } catch (Exception sd) {
-            }// fim da thread
+                }
+                ps.println(this.request(json.getString("request"), json.getJSONObject("object")));
+            }
+            s.close();
+            System.gc();
         }
     }
 
@@ -114,9 +108,8 @@ public class ServidorTCP {
     }
 
     public String request(String request, JSONObject objeto) {
-        if(objeto.length()>1){
-            System.out.println("Tamanho:"+objeto.length());
-            
+        if (objeto.length() > 1) {
+            System.out.println("Tamanho:" + objeto.length());
         }
         switch (request) {
             // ------------------------------- GET all ------------------------- //

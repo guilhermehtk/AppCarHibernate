@@ -2,7 +2,6 @@ package servidor.rest;
 
 import java.util.ArrayList;
 import model.Login;
-import servidor.json.JSONArray;
 import servidor.json.JSONException;
 import servidor.json.JSONObject;
 
@@ -13,11 +12,9 @@ public class LoginJSON {
         Login login = new Login();
         try {
             //pega do json os registros da tag login
-            JSONArray vetor = (JSONArray) json.get("login");
-            JSONObject object = (JSONObject) vetor.get(0);
-            login.setCod(object.getInt("cod"));
-            login.setUsuario(object.getString("usuario"));
-            login.setSenha(object.getString("senha"));
+            login.setCod(json.getInt("cod"));
+            login.setUsuario(json.getString("usuario"));
+            login.setSenha(json.getString("senha"));
         } catch (Exception x) {
         }
         return login;

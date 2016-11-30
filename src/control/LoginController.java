@@ -7,11 +7,11 @@ import org.mindrot.jbcrypt.BCrypt;
 
 public class LoginController {
 
-    LoginDao loginDao = new LoginDao();
-    FuncionarioDao mecanicoDao = new FuncionarioDao();
-    Login log;
+    static LoginDao loginDao = new LoginDao();
+    static FuncionarioDao mecanicoDao = new FuncionarioDao();
+    static Login log;
 
-    public int validaLogin(Login login) {
+    public static int validaLogin(Login login) {
         log = loginDao.getUsuario(login);
         if (log!=null) {
             if (BCrypt.checkpw(login.getSenha(), log.getSenha())) {
