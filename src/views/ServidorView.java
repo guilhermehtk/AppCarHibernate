@@ -1,6 +1,7 @@
 package views;
 
 import java.io.IOException;
+import java.net.SocketException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -16,41 +17,41 @@ public class ServidorView extends javax.swing.JInternalFrame {
         this.setFrameIcon(new ImageIcon(getClass().getResource("/views/icons/Server-25.png")));
     }
 
-    private void start(){
+    private void start() {
         try {
-                String i = JOptionPane.showInputDialog("Digite a porta de espera do servidor: ", "3322");
-                if (i != null) {
-                    final int porta = Integer.parseInt(i);
-                    new Thread() {
-                        public void run() {
-                            server = new ServidorTCP(porta);
-                            try {
-                                server.esperaConexao();
-                            } catch (IOException ex) {
-                                Logger.getLogger(ServidorView.class.getName()).log(Level.SEVERE, null, ex);
-                            }
+            String i = JOptionPane.showInputDialog("Digite a porta de espera do servidor: ", "3322");
+            if (i != null) {
+                final int porta = Integer.parseInt(i);
+                new Thread() {
+                    public void run() {
+                        server = new ServidorTCP(porta);
+                        try {
+                            server.esperaConexao();
+                        } catch (IOException ex) {
+                            Logger.getLogger(ServidorView.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                    }.start();
-                    status.setEnabled(true);
-                    buttonOn.setText("Desligar");
-                    buttonOn.setIcon(new ImageIcon(getClass().getResource("/views/icons/Off-25.png")));
-                }
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "É necessário digitar uma porta válida.");
+                    }
+                }.start();
+                status.setEnabled(true);
+                buttonOn.setText("Desligar");
+                buttonOn.setIcon(new ImageIcon(getClass().getResource("/views/icons/Off-25.png")));
             }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "É necessário digitar uma porta válida.");
+        }
     }
-    
-    private void close(){
+
+    private void close() {
         try {
-                server.close();
-                server = null;
-                status.setEnabled(false);
-                buttonOn.setText("Iniciar");
-                buttonOn.setIcon(new ImageIcon(getClass().getResource("/views/icons/On-25.png")));
-            } catch (Throwable ex) {
-                Logger.getLogger(ServidorView.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            server.close();
+            status.setEnabled(false);
+            buttonOn.setText("Iniciar");
+            buttonOn.setIcon(new ImageIcon(getClass().getResource("/views/icons/On-25.png")));
+        } catch (Throwable ex) {
+            Logger.getLogger(ServidorView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -162,8 +163,8 @@ public class ServidorView extends javax.swing.JInternalFrame {
 
     private void buttonRestartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRestartActionPerformed
         try {
-            if(server!=null){
-            server.restart();
+            if (server != null) {
+                server.restart();
             } else {
                 this.start();
             }
@@ -173,7 +174,7 @@ public class ServidorView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_buttonRestartActionPerformed
 
     private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
-     this.close();
+        this.close();
         this.dispose();
     }//GEN-LAST:event_buttonCancelarActionPerformed
 
