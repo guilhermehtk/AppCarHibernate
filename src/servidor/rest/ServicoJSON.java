@@ -8,13 +8,11 @@ import servidor.json.JSONObject;
 
 public class ServicoJSON {
 
-    public static Servico getServicoJSON(JSONObject json) {
+    public static Servico getServicoJSON(JSONObject object) {
         //instancia vetor de servicos
         Servico servico = new Servico();
         try {
             //pega do json os registros da tag servico
-            JSONArray vetor = (JSONArray) json.get("servico");
-            JSONObject object = (JSONObject) vetor.get(0);
             servico.setCod(object.getInt("cod"));
             servico.setDescricao(object.getString("descricao"));
             servico.setValor(object.getDouble("valor"));

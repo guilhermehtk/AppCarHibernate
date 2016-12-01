@@ -10,13 +10,11 @@ import servidor.json.JSONObject;
 
 public class FuncionarioJSON {
 
-    public static Funcionario getFuncionarioJSON(JSONObject json) {
+    public static Funcionario getFuncionarioJSON(JSONObject object) {
         //instancia vetor de funcionarios
         Funcionario funcionario = new Funcionario();
         try {
             //pega do json os registros da tag funcionario
-            JSONArray vetor = (JSONArray) json.get("funcionario");
-            JSONObject object = (JSONObject) vetor.get(0);
             funcionario.setCodigo(object.getInt("cod"));
             funcionario.setNome(object.getString("nome"));
             funcionario.setCpf(object.getString("cpf"));

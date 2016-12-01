@@ -8,13 +8,11 @@ import servidor.json.JSONObject;
 
 public class EnderecoJSON {
 
-    public static Endereco getEnderecoJSON(JSONObject json) {
+    public static Endereco getEnderecoJSON(JSONObject object) {
         //instancia vetor de enderecos
         Endereco endereco = new Endereco();
         try {
             //pega do json os registros da tag endereco
-            JSONArray vetor = (JSONArray) json.get("endereco");
-            JSONObject object = (JSONObject) vetor.get(0);
             endereco.setCod(object.getInt("cod"));
             endereco.setRua(object.getString("rua"));
             endereco.setNumero(object.getString("numero"));

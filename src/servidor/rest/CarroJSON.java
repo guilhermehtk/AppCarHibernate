@@ -9,13 +9,11 @@ import servidor.json.JSONObject;
 
 public class CarroJSON {
 
-    public static Carro getCarroJSON(JSONObject json) {
+    public static Carro getCarroJSON(JSONObject object) {
         //instancia vetor de carros
         Carro carro = new Carro();
         try {
             //pega do json os registros da tag carro
-            JSONArray vetor = (JSONArray) json.get("carro");
-            JSONObject object = (JSONObject) vetor.get(0);
             carro.setCod(object.getInt("cod"));
             carro.setMarca(object.getString("marca"));
             carro.setModelo(object.getString("modelo"));

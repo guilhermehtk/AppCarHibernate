@@ -11,13 +11,11 @@ import servidor.json.JSONObject;
 
 public class Servico_OSJSON {
 
-    public static Servico_OS getServico_OSJSON(JSONObject json) {
+    public static Servico_OS getServico_OSJSON(JSONObject object) {
         //instancia vetor de servico_os
         Servico_OS servico_os = new Servico_OS();
         try {
             //pega do json os registros da tag servico_os
-            JSONArray vetor = (JSONArray) json.get("servico_os");
-            JSONObject object = (JSONObject) vetor.get(0);
             servico_os.setCod(object.getInt("cod"));
             servico_os.setFuncionario(new FuncionarioDao().get(object.getInt("funcionario_codigo")));
             servico_os.setOrdemservico(new OrdemServicoDao().get(object.getInt("ordemservico_cod")));

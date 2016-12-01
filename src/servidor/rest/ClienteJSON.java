@@ -1,4 +1,4 @@
-package servidor.rest;
+                    package servidor.rest;
 
 import java.util.ArrayList;
 import model.Cliente;
@@ -8,13 +8,11 @@ import servidor.json.JSONObject;
 
 public class ClienteJSON {
 
-    public static Cliente getClienteJSON(JSONObject json) {
+    public static Cliente getClienteJSON(JSONObject object) {
         //instancia vetor de clientes
         Cliente cliente = new Cliente();
         try {
             //pega do json os registros da tag cliente
-            JSONArray vetor = (JSONArray) json.get("cliente");
-            JSONObject object = (JSONObject) vetor.get(0);
             cliente.setCodigo(object.getInt("codigo"));
             cliente.setNome(object.getString("nome"));
             cliente.setCpf(object.getString("cpf"));
