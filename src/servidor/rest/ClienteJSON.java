@@ -63,6 +63,7 @@ public class ClienteJSON {
             registro.put("email", cliente.getEmail());
             registro.put("sexo", cliente.getSexo());
             registro.put("endereco", EnderecoJSON.preencheJSON(cliente.getEndereco()));
+            return registro;
         } catch (JSONException k) {
         }
         return null;

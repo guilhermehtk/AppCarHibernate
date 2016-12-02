@@ -51,6 +51,7 @@ public class ServicoJSON {
             registro.put("cod", servico.getCod());
             registro.put("descricao", servico.getDescricao());
             registro.put("valor", servico.getValor());
+            return registro;
         } catch (JSONException k) {
         }
         return null;

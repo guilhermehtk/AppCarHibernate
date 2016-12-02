@@ -62,6 +62,7 @@ public class OrdemServicoJSON {
             registro.put("descricao", os.getDescricao());
             registro.put("situacao", os.getSituacao());
             registro.put("tipo", os.getTipo());
+            return registro;
         } catch (JSONException k) {
         }
         return null;

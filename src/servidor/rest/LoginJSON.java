@@ -50,6 +50,7 @@ public class LoginJSON {
             registro.put("cod", login.getCod());
             registro.put("usuario", login.getUsuario());
             registro.put("senha", login.getSenha());
+            return registro;
         } catch (JSONException k) {
         }
         return null;

@@ -67,22 +67,22 @@ public class ServidorTCP {
 
             if (json.has("request")) {
                 if (json.get("request").equals("login")) {
-                        JSONObject login = json.getJSONObject("object").getJSONObject("login");
-                        int flag = LoginController.validaLogin(LoginJSON.getLoginJSON(login));
-                        System.out.println(flag);
-                        // testa o login do usuário
-                        if (flag == 0) {
-                            ps.println(new JSONObject().put("return", "password_incorrect"));
-                            return;
-                        } else if (flag < 0) {
-                            ps.println(new JSONObject().put("return", "user_not_found"));
-                             return;
-                        } else {
-                            ps.println(new JSONObject().put("return", "success"));
-                             return;
-                        }
+                    JSONObject login = json.getJSONObject("object").getJSONObject("login");
+                    int flag = LoginController.validaLogin(LoginJSON.getLoginJSON(login));
+                    System.out.println(flag);
+                    // testa o login do usuário
+                    if (flag == 0) {
+                        ps.println(new JSONObject().put("return", "password_incorrect"));
+                    } else if (flag < 0) {
+                        ps.println(new JSONObject().put("return", "user_not_found"));
+                    } else {
+                        ps.println(new JSONObject().put("return", "success"));
+                    }
+                } else {
+                    String resposta = this.request(json.getString("request"), json);
+                    ps.println(resposta);
+                    System.out.println("JSON ENVIADO: "+resposta);
                 }
-                ps.println(this.request(json.getString("request"), json));
             }
             s.close();
             System.gc();
@@ -115,9 +115,9 @@ public class ServidorTCP {
             }
             return new JSONObject().put("return", array).toString();
         } else if (object.has("object")) {
-            return new JSONObject().put("return", switchRequest(request, object.getJSONObject("object"))).toString();
+            return new JSONObject().put("return", new JSONObject(switchRequest(request, object.getJSONObject("object")))).toString();
         } else {
-            return new JSONObject().put("return", switchRequest(request, null)).toString();
+            return new JSONObject().put("return", new JSONObject(switchRequest(request, null))).toString();
         }
 
     }

@@ -34,15 +34,12 @@ public class CarroJSON {
         JSONObject registro;
         //cria um registro primeiro
         for (Carro carro : carros) {
-            registro = preencheJSON(carro);
-            //adiciona registro à lista de registros
-            tabelaCarros.add(registro);
+            tabelaCarros.add(preencheJSON(carro));
         }
-
         //adiciona tabela
         JSONObject bd = new JSONObject();
         try {
-            bd.putOpt("carro", (Object) tabelaCarros);
+            bd.put("carro",(Object)tabelaCarros);
         } catch (JSONException u) {
         }
         return UtilJSON.limpaJSON(bd);

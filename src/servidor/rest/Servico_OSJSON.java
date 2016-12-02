@@ -56,6 +56,7 @@ public class Servico_OSJSON {
             registro.put("funcionario_codigo", servico.getFuncionario().getCodigo());
             registro.put("ordemservico_codigo", servico.getOrdemservico().getCod());
             registro.put("servico_codigo", servico.getServico().getCod());
+            return registro;
         } catch (JSONException k) {
         }
         return null;

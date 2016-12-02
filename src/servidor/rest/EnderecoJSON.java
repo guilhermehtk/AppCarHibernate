@@ -59,6 +59,7 @@ public class EnderecoJSON {
             registro.put("bairro", endereco.getBairro());
             registro.put("cidade", endereco.getCidade());
             registro.put("cep", endereco.getCep());
+            return registro;
         } catch (JSONException k) {
         }
         return null;

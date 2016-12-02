@@ -67,6 +67,7 @@ public class FuncionarioJSON {
             registro.put("sexo", funcionario.getSexo());
             registro.put("endereco", EnderecoJSON.geraJSONEndereco(funcionario.getEndereco()));
             registro.put("login", LoginJSON.geraJSONLogin(funcionario.getLogin()));
+            return registro;
         } catch (JSONException k) {
         }
         return null;
