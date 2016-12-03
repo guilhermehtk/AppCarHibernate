@@ -1,6 +1,5 @@
 package control;
 
-import control.*;
 import java.util.ArrayList;
 
 public interface InterfaceControllerCrud {

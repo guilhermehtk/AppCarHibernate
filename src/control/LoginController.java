@@ -13,7 +13,7 @@ public class LoginController {
 
     public static int validaLogin(Login login) {
         log = loginDao.getUsuario(login);
-        if (log!=null) {
+        if (log != null) {
             if (BCrypt.checkpw(login.getSenha(), log.getSenha())) {
                 // Validou -> Retorna ID do usuário
                 return mecanicoDao.getLogin(log.getCod()).getCodigo();

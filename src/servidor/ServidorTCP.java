@@ -81,7 +81,7 @@ public class ServidorTCP {
                 } else {
                     String resposta = this.request(json.getString("request"), json);
                     ps.println(resposta);
-                    System.out.println("JSON ENVIADO: "+resposta);
+                    System.out.println("JSON ENVIADO: " + resposta);
                 }
             }
             s.close();

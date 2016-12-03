@@ -463,7 +463,7 @@ public class ListaServicos extends javax.swing.JInternalFrame {
         Servico servico = servicos.get(retornaLinha());
         serCon.remove(servico.getCod());
         this.povoaTabela();
-           Mensagens.sucessoDelete();
+        Mensagens.sucessoDelete();
     }//GEN-LAST:event_buttonExcluirActionPerformed
 
     private void buttonPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPDFActionPerformed

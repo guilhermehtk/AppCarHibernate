@@ -3,7 +3,6 @@ package servidor.rest;
 import java.util.ArrayList;
 import model.Carro;
 import model.dao.ClienteDao;
-import servidor.json.JSONArray;
 import servidor.json.JSONException;
 import servidor.json.JSONObject;
 
@@ -39,13 +38,13 @@ public class CarroJSON {
         //adiciona tabela
         JSONObject bd = new JSONObject();
         try {
-            bd.put("carro",(Object)tabelaCarros);
+            bd.put("carro", (Object) tabelaCarros);
         } catch (JSONException u) {
         }
         return UtilJSON.limpaJSON(bd);
     }
-    
-      public static String geraJSONCarro(Carro carro) { 
+
+    public static String geraJSONCarro(Carro carro) {
         return UtilJSON.limpaJSON(preencheJSON(carro));
     }
 

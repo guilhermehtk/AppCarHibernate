@@ -1,11 +1,12 @@
 package model;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Login {
+public class Login implements Serializable {
 
     private int cod;
     private String usuario;

@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import model.OrdemServico;
 import model.dao.CarroDao;
 import model.dao.ClienteDao;
-import servidor.json.JSONArray;
 import servidor.json.JSONException;
 import servidor.json.JSONObject;
 

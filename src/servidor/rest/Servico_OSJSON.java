@@ -5,7 +5,6 @@ import model.Servico_OS;
 import model.dao.FuncionarioDao;
 import model.dao.OrdemServicoDao;
 import model.dao.ServicoDao;
-import servidor.json.JSONArray;
 import servidor.json.JSONException;
 import servidor.json.JSONObject;
 

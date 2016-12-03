@@ -11,7 +11,7 @@ public class ClienteDao implements InterfaceDao {
     private EntityManager manager;
 
     public ClienteDao() {
- manager = JpaUtil.getEntityManager();
+        manager = JpaUtil.getEntityManager();
     }
 
     public int add(Object cli) {
@@ -23,7 +23,7 @@ public class ClienteDao implements InterfaceDao {
     }
 
     public void remove(int id) {
-          manager.getTransaction().begin();
+        manager.getTransaction().begin();
         manager.remove(manager.getReference(Cliente.class, id));
         manager.getTransaction().commit();
     }
@@ -43,8 +43,8 @@ public class ClienteDao implements InterfaceDao {
 
     public ArrayList<Cliente> getAll() {
         Query query = manager.createQuery("from Cliente");
-        List<Cliente> lista = query.getResultList();   
-        return (ArrayList<Cliente>)lista;
+        List<Cliente> lista = query.getResultList();
+        return (ArrayList<Cliente>) lista;
     }
 
 }

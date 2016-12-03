@@ -7,7 +7,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import model.Funcionario;
 import model.dao.FuncionarioDao;
-import relatorios.RelatorioController;
 import views.relatorios.ClienteOSRelatorioView;
 import views.relatorios.ListaDeServicosRelatorioView;
 import views.relatorios.ServicosPeriodoRelatorioView;
@@ -574,7 +573,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menuServRealizadosActionPerformed
 
     private void menuServActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuServActionPerformed
-      addInternal(new ServidorView());
+        addInternal(new ServidorView());
     }//GEN-LAST:event_menuServActionPerformed
 
     /**

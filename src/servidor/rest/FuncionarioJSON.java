@@ -1,10 +1,7 @@
 package servidor.rest;
 
 import java.util.ArrayList;
-import model.Endereco;
 import model.Funcionario;
-import model.Login;
-import servidor.json.JSONArray;
 import servidor.json.JSONException;
 import servidor.json.JSONObject;
 

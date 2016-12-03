@@ -11,7 +11,7 @@ public class EnderecoDao implements InterfaceDao {
     private EntityManager manager;
 
     public EnderecoDao() {
-       manager = JpaUtil.getEntityManager();
+        manager = JpaUtil.getEntityManager();
     }
 
     public int add(Object end) {
@@ -23,7 +23,7 @@ public class EnderecoDao implements InterfaceDao {
     }
 
     public void remove(int id) {
-      manager.getTransaction().begin();
+        manager.getTransaction().begin();
         manager.remove(manager.getReference(Endereco.class, id));
         manager.getTransaction().commit();
     }
@@ -43,8 +43,8 @@ public class EnderecoDao implements InterfaceDao {
 
     public ArrayList<Endereco> getAll() {
         Query query = manager.createQuery("from Endereco");
-        List<Endereco> lista = query.getResultList();              
-        return (ArrayList<Endereco>)lista;
+        List<Endereco> lista = query.getResultList();
+        return (ArrayList<Endereco>) lista;
     }
 
 }

@@ -23,7 +23,7 @@ public class LogDao implements InterfaceDao {
     }
 
     public void remove(int id) {
-       manager.getTransaction().begin();
+        manager.getTransaction().begin();
         manager.remove(manager.getReference(Log.class, id));
         manager.getTransaction().commit();
     }

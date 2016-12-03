@@ -1,12 +1,13 @@
 package model;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Servico_OS {
+public class Servico_OS implements Serializable {
 
     private int cod;
     private Servico servico;

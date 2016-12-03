@@ -2,7 +2,6 @@ package servidor.rest;
 
 import java.util.ArrayList;
 import model.Servico;
-import servidor.json.JSONArray;
 import servidor.json.JSONException;
 import servidor.json.JSONObject;
 

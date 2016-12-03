@@ -1,14 +1,15 @@
 package views;
 
 public class AjudaView extends javax.swing.JInternalFrame {
-    
+
     public AjudaView() {
         initComponents();
     }
-    private void nulaTela(){
+
+    private void nulaTela() {
         TelaAjuda.setText("");
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -173,7 +174,7 @@ public class AjudaView extends javax.swing.JInternalFrame {
 
     private void buttonServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonServicoActionPerformed
         nulaTela();
-        TelaAjuda.setText( "Adicionar:\nPara adicionar um serviço você deve preencher os campos requisitados e pressionar o salvar, após isso você deve pressionar o botão verde(Cruz) "
+        TelaAjuda.setText("Adicionar:\nPara adicionar um serviço você deve preencher os campos requisitados e pressionar o salvar, após isso você deve pressionar o botão verde(Cruz) "
                 + "\n\n"
                 + "Editar:\nPara editar, você precisa selecionar um serviço na tabela.Logo após, você deve pressionar o botão de editar(Lápis), fazer as alterações desejadas, e pressionar o salvar"
                 + "\n\n"

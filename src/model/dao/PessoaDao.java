@@ -23,7 +23,7 @@ public class PessoaDao implements InterfaceDao {
     }
 
     public void remove(int id) {
-       manager.getTransaction().begin();
+        manager.getTransaction().begin();
         manager.remove(manager.getReference(Pessoa.class, id));
         manager.getTransaction().commit();
     }

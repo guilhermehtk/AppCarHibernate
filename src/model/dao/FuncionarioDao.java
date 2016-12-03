@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import model.Login;
 
 public class FuncionarioDao implements InterfaceDao {
 
@@ -24,7 +23,7 @@ public class FuncionarioDao implements InterfaceDao {
     }
 
     public void remove(int id) {
-         manager.getTransaction().begin();
+        manager.getTransaction().begin();
         manager.remove(manager.getReference(Funcionario.class, id));
         manager.getTransaction().commit();
     }
@@ -51,7 +50,7 @@ public class FuncionarioDao implements InterfaceDao {
     public Funcionario getLogin(int idLogin) {
         Query query = manager.createQuery("from Funcionario where login_cod=:cod").setParameter("cod", idLogin);
 
-         try {
+        try {
             return (Funcionario) query.getSingleResult();
         } catch (Exception e) {
             System.out.println(e.toString());

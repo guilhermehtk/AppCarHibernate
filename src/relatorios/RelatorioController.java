@@ -28,7 +28,7 @@ public class RelatorioController {
                     JasperReport report = JasperCompileManager.compileReport("src/relatorios/xml/" + jrxml + ".jrxml");
                     JasperPrint impressao = JasperFillManager.fillReport(report, parameters, con);
                     JasperExportManager.exportReportToPdfFile(impressao, "relatorios/" + jrxml + "-" + dt.format(Calendar.getInstance().getTime()) + ".pdf");
-                    File arquivo = new File("relatorios/" + jrxml + "-" + dt.format(Calendar.getInstance().getTime())+ ".pdf");                                             
+                    File arquivo = new File("relatorios/" + jrxml + "-" + dt.format(Calendar.getInstance().getTime()) + ".pdf");
                     Desktop.getDesktop().open(arquivo);
                 } catch (IOException | JRException e) {
                     JOptionPane.showMessageDialog(null, "Erro ao Gerar o Relatório, " + e.getMessage(), "Erro", JOptionPane.INFORMATION_MESSAGE);
@@ -63,6 +63,7 @@ public class RelatorioController {
     public static void geraRelatorioServicos(JInternalFrame frame) {
         geraRelatorio("listaservicos", null, frame);
     }
+
     public static void geraRelatorioServicoRealizado(JInternalFrame frame) {
         geraRelatorio("servicorealizado", null, frame);
     }

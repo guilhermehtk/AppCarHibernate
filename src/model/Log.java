@@ -1,12 +1,15 @@
 package model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-public class Log {
+@Entity
+public class Log implements Serializable {
 
     private int cod;
     private String descricao;

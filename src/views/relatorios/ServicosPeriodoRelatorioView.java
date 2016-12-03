@@ -11,8 +11,8 @@ public class ServicosPeriodoRelatorioView extends javax.swing.JInternalFrame {
     public ServicosPeriodoRelatorioView() {
         initComponents();
     }
-    
-    private Boolean valida(){
+
+    private Boolean valida() {
         return !(dateDe.getDate() == null || dateAte.getDate() == null);
     }
 
@@ -111,11 +111,11 @@ public class ServicosPeriodoRelatorioView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvarActionPerformed
-       if(valida()){
-            RelatorioController.geraRelatorioServicosPeriodo(dt.format(dateDe.getDate()),  dt.format(dateAte.getDate()), this);
-       } else {
-           JOptionPane.showMessageDialog(this,"É necessário duas datas selecionadas para gerar o relatório.","Erro",JOptionPane.ERROR_MESSAGE);
-       }
+        if (valida()) {
+            RelatorioController.geraRelatorioServicosPeriodo(dt.format(dateDe.getDate()), dt.format(dateAte.getDate()), this);
+        } else {
+            JOptionPane.showMessageDialog(this, "É necessário duas datas selecionadas para gerar o relatório.", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_buttonSalvarActionPerformed
 
     private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed

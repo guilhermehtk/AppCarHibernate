@@ -7,28 +7,28 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class Mensagens {
- 
+
     private static final ImageIcon icon = icon("/views/icons/Ok-48.png");
-    
+
     private static ImageIcon icon(String path) {
         URL resource = Mensagens.class.getResource(path);
         return new ImageIcon(resource);
     }
-    
+
     public static void erroBD(String erro) {
         JOptionPane.showMessageDialog(null, "Erro na Conexão com o Banco de Dados " + erro, "Erro", JOptionPane.ERROR_MESSAGE);
     }
 
     public static void sucessoCreate() {
-        JOptionPane.showMessageDialog(null, "Inserido com Sucesso!", "Sucesso", JOptionPane.PLAIN_MESSAGE,icon);
+        JOptionPane.showMessageDialog(null, "Inserido com Sucesso!", "Sucesso", JOptionPane.PLAIN_MESSAGE, icon);
     }
 
     public static void sucessoAlterar() {
-        JOptionPane.showMessageDialog(null, "Alterado com Sucesso!", "Sucesso", JOptionPane.PLAIN_MESSAGE,icon);
+        JOptionPane.showMessageDialog(null, "Alterado com Sucesso!", "Sucesso", JOptionPane.PLAIN_MESSAGE, icon);
     }
-    
+
     public static void sucessoDelete() {
-        JOptionPane.showMessageDialog(null, "Deletado com Sucesso!", "Sucesso", JOptionPane.PLAIN_MESSAGE,icon);
+        JOptionPane.showMessageDialog(null, "Deletado com Sucesso!", "Sucesso", JOptionPane.PLAIN_MESSAGE, icon);
     }
 
     public static boolean errosValidacao(ArrayList<String> erros) {
