@@ -13,14 +13,6 @@ public class ClienteJSON {
         try {
             //pega do json os registros da tag cliente
             cliente.setCodigo(object.getInt("codigo"));
-            cliente.setNome(object.getString("nome"));
-            cliente.setCpf(object.getString("cpf"));
-            cliente.setEmail(object.getString("email"));
-            cliente.setEndereco(EnderecoJSON.getEnderecoJSON(object.getJSONObject("endereco")));
-            cliente.setRg(object.getString("rg"));
-            cliente.setSexo(object.getString("sexo"));
-            cliente.setTelefoneF(object.getString("telefoneF"));
-            cliente.setTelefoneM(object.getString("telefoneM"));
         } catch (Exception x) {
         }
         return cliente;
@@ -54,14 +46,6 @@ public class ClienteJSON {
         JSONObject registro = new JSONObject();
         try {
             registro.put("codigo", cliente.getCodigo());
-            registro.put("nome", cliente.getNome());
-            registro.put("cpf", cliente.getCpf());
-            registro.put("rg", cliente.getRg());
-            registro.put("telefoneM", cliente.getTelefoneM());
-            registro.put("telefoneF", cliente.getTelefoneF());
-            registro.put("email", cliente.getEmail());
-            registro.put("sexo", cliente.getSexo());
-            registro.put("endereco", EnderecoJSON.preencheJSON(cliente.getEndereco()));
             return registro;
         } catch (JSONException k) {
         }

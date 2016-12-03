@@ -12,16 +12,8 @@ public class FuncionarioJSON {
         Funcionario funcionario = new Funcionario();
         try {
             //pega do json os registros da tag funcionario
-            funcionario.setCodigo(object.getInt("cod"));
-            funcionario.setNome(object.getString("nome"));
-            funcionario.setCpf(object.getString("cpf"));
-            funcionario.setEmail(object.getString("email"));
-            funcionario.setEndereco(EnderecoJSON.getEnderecoJSON(object.getJSONObject("endereco")));
-            funcionario.setRg(object.getString("rg"));
-            funcionario.setSexo(object.getString("sexo"));
-            funcionario.setTelefoneF(object.getString("telefoneF"));
-            funcionario.setTelefoneM(object.getString("telefoneM"));
-            funcionario.setLogin(LoginJSON.getLoginJSON(object.getJSONObject("login")));
+            funcionario.setCodigo(object.getInt("codigo"));
+            funcionario.setLogin(LoginJSON.getLoginJSON(object.getJSONObject("login_cod")));
         } catch (Exception x) {
         }
         return funcionario;
@@ -54,16 +46,8 @@ public class FuncionarioJSON {
     public static JSONObject preencheJSON(Funcionario funcionario) {
         JSONObject registro = new JSONObject();
         try {
-            registro.put("cod", funcionario.getCodigo());
-            registro.put("nome", funcionario.getNome());
-            registro.put("cpf", funcionario.getCpf());
-            registro.put("rg", funcionario.getRg());
-            registro.put("telefoneM", funcionario.getTelefoneM());
-            registro.put("telefoneF", funcionario.getTelefoneF());
-            registro.put("email", funcionario.getEmail());
-            registro.put("sexo", funcionario.getSexo());
-            registro.put("endereco", EnderecoJSON.geraJSONEndereco(funcionario.getEndereco()));
-            registro.put("login", LoginJSON.geraJSONLogin(funcionario.getLogin()));
+            registro.put("codigo", funcionario.getCodigo());
+            registro.put("login_cod", funcionario.getLogin().getCod());
             return registro;
         } catch (JSONException k) {
         }

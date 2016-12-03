@@ -41,8 +41,9 @@ public class LoginDao implements InterfaceDao {
         return login;
     }
 
-    public ArrayList<Login> getAll() {
-        List<Login> lista = (List<Login>) manager.createQuery("from Login");
+      public ArrayList<Login> getAll() {
+        Query query = manager.createQuery("from Login");
+        List<Login> lista = query.getResultList();
         return (ArrayList<Login>) lista;
     }
 

@@ -2,9 +2,11 @@ package servidor;
 
 import control.CarroController;
 import control.ClienteController;
+import control.EnderecoController;
 import control.FuncionarioController;
 import control.LoginController;
 import control.OrdemServicoController;
+import control.PessoaController;
 import control.ServicoController;
 import control.Servico_OSController;
 import java.net.*;
@@ -19,9 +21,11 @@ import servidor.json.JSONArray;
 import servidor.json.JSONObject;
 import servidor.rest.CarroJSON;
 import servidor.rest.ClienteJSON;
+import servidor.rest.EnderecoJSON;
 import servidor.rest.FuncionarioJSON;
 import servidor.rest.LoginJSON;
 import servidor.rest.OrdemServicoJSON;
+import servidor.rest.PessoaJSON;
 import servidor.rest.ServicoJSON;
 import servidor.rest.Servico_OSJSON;
 import views.Mensagens;
@@ -76,7 +80,10 @@ public class ServidorTCP {
                     } else if (flag < 0) {
                         ps.println(new JSONObject().put("return", "user_not_found"));
                     } else {
-                        ps.println(new JSONObject().put("return", "success"));
+                        JSONObject resposta = new JSONObject();
+                        resposta.put("return", "success");
+                        resposta.put("cod_login", flag);
+                        ps.println(resposta.toString());
                     }
                 } else {
                     String resposta = this.request(json.getString("request"), json);
@@ -137,6 +144,12 @@ public class ServidorTCP {
                 return ServicoJSON.geraJSONServicos(new ServicoController().getAll());
             case "get_Servico_OS_All":
                 return Servico_OSJSON.geraJSONServico_OSs(new Servico_OSController().getAll());
+            case "get_Endereco_All":
+                return EnderecoJSON.geraJSONEnderecos(new EnderecoController().getAll());
+            case "get_Login_All":
+                return LoginJSON.geraJSONLogins(new LoginController().getAll());
+            case "get_Pessoa_All":
+                return PessoaJSON.geraJSONPessoas(new PessoaController().getAll());
 
             // ------------------------------- GET id ------------------------- //
             case "get_Carro":

@@ -1,5 +1,6 @@
 package control;
 
+import java.util.ArrayList;
 import model.dao.FuncionarioDao;
 import model.dao.LoginDao;
 import model.Login;
@@ -26,6 +27,10 @@ public class LoginController {
             return -1;
         }
 
+    }
+
+    public ArrayList<Login> getAll() {
+        return loginDao.getAll();
     }
 
 }
