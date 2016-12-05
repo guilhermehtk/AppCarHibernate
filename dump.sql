@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.12, for linux-glibc2.5 (x86_64)
+-- MySQL dump 10.13  Distrib 5.6.24, for Win64 (x86_64)
 --
 -- Host: localhost    Database: appcarhibernate
 -- ------------------------------------------------------
--- Server version	5.7.16-0ubuntu0.16.04.1
+-- Server version	5.7.14
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -87,7 +87,7 @@ CREATE TABLE `endereco` (
   `numero` varchar(255) DEFAULT NULL,
   `rua` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`cod`)
-) ENGINE=MyISAM AUTO_INCREMENT=45 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=47 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96,7 +96,7 @@ CREATE TABLE `endereco` (
 
 LOCK TABLES `endereco` WRITE;
 /*!40000 ALTER TABLE `endereco` DISABLE KEYS */;
-INSERT INTO `endereco` VALUES (1,'1','1','1','1','1','1'),(21,'Centro','35580-000','Formiga','Apart. A','365','Rua Sete de Setembro'),(36,'Nra. Lourdes','35570-000','Formiga','E','19','Prof. Francis'),(37,'Sao Lourenço','35570-000','Formiga','A','84','Antonio Jorge Rezende'),(38,'Centro','35570-000','Formiga','A','41','do Ifmg'),(39,'SAAE','35570-000','Formiga','A','656','do Saae'),(40,'Ouro Negro','35570-000','Formiga','Casa','255','Uruguai '),(41,'Lagoa','35570-000','Formiga','Casa','97','José do Couto'),(42,'Cidade Nova','35570-000','Formiga','Casa','24','Perdigão'),(43,'Bela Vista','35570-000','Formiga','Casa','55','Deoliinda Nogueira da Costa'),(44,'Rosário','35570-000','Formiga','A','55','Anildo gontijo ');
+INSERT INTO `endereco` VALUES (21,'Centro','35580-000','Formiga','Apart. A','365','Rua Sete de Setembro'),(36,'Nra. Lourdes','35570-000','Formiga','E','19','Prof. Francis'),(37,'Sao Lourenço','35570-000','Formiga','A','84','Antonio Jorge Rezende'),(38,'Centro','35570-000','Formiga','A','41','do Ifmg'),(39,'SAAE','35570-000','Formiga','A','656','do Saae'),(40,'Ouro Negro','35570-000','Formiga','Casa','255','Uruguai '),(41,'Lagoa','35570-000','Formiga','Casa','97','José do Couto'),(42,'Cidade Nova','35570-000','Formiga','Casa','24','Perdigão'),(43,'Bela Vista','35570-000','Formiga','Casa','55','Deoliinda Nogueira da Costa'),(44,'Rosário','35570-000','Formiga','A','55','Anildo gontijo '),(45,'Centro','35567-000','Formiga','A','387','Sete de Setembro'),(46,'Centro','35570-000','Formiga','A','2332','1Sete de Setembro');
 /*!40000 ALTER TABLE `endereco` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -121,8 +121,34 @@ CREATE TABLE `funcionario` (
 
 LOCK TABLES `funcionario` WRITE;
 /*!40000 ALTER TABLE `funcionario` DISABLE KEYS */;
-INSERT INTO `funcionario` VALUES (1,1);
+INSERT INTO `funcionario` VALUES (13,9);
 /*!40000 ALTER TABLE `funcionario` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `log`
+--
+
+DROP TABLE IF EXISTS `log`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `log` (
+  `cod` int(11) NOT NULL AUTO_INCREMENT,
+  `data` datetime DEFAULT NULL,
+  `descricao` varchar(255) DEFAULT NULL,
+  `funcionario_codigo` int(11) DEFAULT NULL,
+  PRIMARY KEY (`cod`),
+  KEY `FK_e2fxadc5hj7gsqqspjc3qxosx` (`funcionario_codigo`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `log`
+--
+
+LOCK TABLES `log` WRITE;
+/*!40000 ALTER TABLE `log` DISABLE KEYS */;
+/*!40000 ALTER TABLE `log` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -137,7 +163,7 @@ CREATE TABLE `login` (
   `senha` varchar(255) DEFAULT NULL,
   `usuario` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`cod`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -146,7 +172,7 @@ CREATE TABLE `login` (
 
 LOCK TABLES `login` WRITE;
 /*!40000 ALTER TABLE `login` DISABLE KEYS */;
-INSERT INTO `login` VALUES (1,'$2a$10$azGf0MCx68sTjAd1YdGlM.QmaAks2td/z5vv20Z6cfyAAXVYpayZW','admin');
+INSERT INTO `login` VALUES (9,'$2a$10$VBSbs5D2TjILcOsQ/pE9../PG5Ah.c5vzDCTt9.Rhf1uDUL5wavFq','admin');
 /*!40000 ALTER TABLE `login` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -177,7 +203,7 @@ CREATE TABLE `ordemservico` (
 
 LOCK TABLES `ordemservico` WRITE;
 /*!40000 ALTER TABLE `ordemservico` DISABLE KEYS */;
-INSERT INTO `ordemservico` VALUES (1,'2016-07-28 23:59:51','Carro',3,'Orçamento',1,2),(2,'2016-11-18 09:24:53','Ordem de serviço',3,'Revisão',2,3),(3,'2016-11-18 09:28:19','',0,'Concerto',3,4),(4,'2016-11-18 09:29:51','',0,'Trocas',4,5),(5,'2016-11-18 09:32:17','Lanternagem no carro',0,'Lanternagem',5,6),(6,'2016-11-18 09:33:50','Pintura',0,'Pintura',6,7),(7,'2016-11-18 09:35:18','Manutenção do carro',0,'Manutenção',7,8),(8,'2016-11-18 09:36:11','Troca de óleo',0,'Lanternagem',8,9),(9,'2016-11-18 09:36:54','Revisão ',0,'Revisão',9,10),(10,'2016-11-18 09:39:05','23412',0,'Manutenção',10,11);
+INSERT INTO `ordemservico` VALUES (1,'2016-07-28 23:59:51','Carro',1,'Orçamento',1,2),(2,'2016-11-18 09:24:53','Ordem de serviço',3,'Revisão',2,3),(3,'2016-11-18 09:28:19','',0,'Concerto',3,4),(4,'2016-11-18 09:29:51','',0,'Trocas',4,5),(5,'2016-11-18 09:32:17','Lanternagem no carro',0,'Lanternagem',5,6),(6,'2016-11-18 09:33:50','Pintura',0,'Pintura',6,7),(7,'2016-11-18 09:35:18','Manutenção do carro',0,'Manutenção',7,8),(8,'2016-11-18 09:36:11','Troca de óleo',0,'Lanternagem',8,9),(9,'2016-11-18 09:36:54','Revisão ',0,'Revisão',9,10),(10,'2016-11-18 09:39:05','23412',0,'Manutenção',10,11);
 /*!40000 ALTER TABLE `ordemservico` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -201,7 +227,7 @@ CREATE TABLE `pessoa` (
   `endereco_cod` int(11) DEFAULT NULL,
   PRIMARY KEY (`codigo`),
   KEY `FK_hcqfns5v9p63lqsngkrg6vsk7` (`endereco_cod`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -210,7 +236,7 @@ CREATE TABLE `pessoa` (
 
 LOCK TABLES `pessoa` WRITE;
 /*!40000 ALTER TABLE `pessoa` DISABLE KEYS */;
-INSERT INTO `pessoa` VALUES ('F',1,'094.139.344-45','guilhermehtk@hotmail.com','Guilherme Henrique','MG19383888','Masculino','(38)8883-3333','(37)99988-1818',1),('C',2,'094.139.344-46','guilhermehtk@hotmail.com','Guilherme Henrique','MG19383888','Masculino','(38)8883-3333','(37)99988-1818',21),('C',3,'125.987.988-32','lelepinheiro@hotmail.com','Leandro Souza Pinheiro','MG12366998','Masculino','(37)6565-6121','(37)98545-4544',36),('C',4,'032.216.565-65','danillo@hotmail.com','Danillo Remaclo dos Santos','MG654232454','Masculino','(37)6545-6432','(37)56565-3621',37),('C',5,'036.546.546-54','thomas@thomas.com.br','Thomas do Vale','MG36232323256','Masculino','(37)6564-1362','(37)65652-1545',38),('C',6,'312.241.545-45','leitao@arape.com.br','Marcelo Geovane Silva Sá','MG65621212','Masculino','(37)6526-5332','(37)65652-1545',39),('C',7,'121.975.456-07','igorribeiro@gmail.com','Igor Ribeiro da Silva','MG1974321758','Feminino','(37)3321-2505','(37)99925-7421',40),('C',8,'194.723.465-02','tiaocarreiro99@hotmail.com','Hernane Marcos de Faria Junior','MG98414355','Masculino','(37)3322-5588','(37)99825-4509',41),('C',9,'242.424.240-24','pedrohenrique@hotmail.com','Pedro Henrique Meneses','MG242424242424','Masculino','(37)3321-2578','(37)99925-5252',42),('C',10,'136.152.981-54','gorazilgarcia@hotmail.com','Gorazil Emerson Garcia Junior','MG24936551','Masculino','(37)3321-5588','(67)99925-5252',43),('C',11,'152.357.951-25','viniciuslima96@gmail.com','Vinmicius Pedro Damasceno Lima','MG245866522423','Masculino','(37)3325-2521','(37)99958-9536',44);
+INSERT INTO `pessoa` VALUES ('C',2,'094.139.344-46','guilhermehtk@hotmail.com','Guilherme Henrique','MG19383888','Masculino','(38)8883-3333','(37)99988-1818',21),('C',3,'125.987.988-32','lelepinheiro@hotmail.com','Leandro Souza Pinheiro','MG12366998','Masculino','(37)6565-6121','(37)98545-4544',36),('C',4,'032.216.565-65','danillo@hotmail.com','Danillo Remaclo dos Santos','MG654232454','Masculino','(37)6545-6432','(37)56565-3621',37),('C',5,'036.546.546-54','thomas@thomas.com.br','Thomas do Vale','MG36232323256','Masculino','(37)6564-1362','(37)65652-1545',38),('C',6,'312.241.545-45','leitao@arape.com.br','Marcelo Geovane Silva Sá','MG65621212','Masculino','(37)6526-5332','(37)65652-1545',39),('C',7,'121.975.456-07','igorribeiro@gmail.com','Igor Ribeiro da Silva','MG1974321758','Feminino','(37)3321-2505','(37)99925-7421',40),('C',8,'194.723.465-02','tiaocarreiro99@hotmail.com','Hernane Marcos de Faria Junior','MG98414355','Masculino','(37)3322-5588','(37)99825-4509',41),('C',9,'242.424.240-24','pedrohenrique@hotmail.com','Pedro Henrique Meneses','MG242424242424','Masculino','(37)3321-2578','(37)99925-5252',42),('C',10,'136.152.981-54','gorazilgarcia@hotmail.com','Gorazil Emerson Garcia Junior','MG24936551','Masculino','(37)3321-5588','(67)99925-5252',43),('C',11,'152.357.951-25','viniciuslima96@gmail.com','Vinmicius Pedro Damasceno Lima','MG245866522423','Masculino','(37)3325-2521','(37)99958-9536',44),('F',13,'094.202.329-82','guilhermehtk@hotmail.com','Guilherme Henrique Pinto','MG9328239','Masculino','(27)8012-9821','(37)92198-2189',46);
 /*!40000 ALTER TABLE `pessoa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -255,7 +281,7 @@ CREATE TABLE `servico_os` (
   KEY `FK_ntdvx375m25i5jm14ns46nlcr` (`funcionario_codigo`),
   KEY `FK_isbu3lkkgoq557mvv9adqe90d` (`ordemservico_cod`),
   KEY `FK_llo3a2hsa2co5djm4ta8og13h` (`servico_cod`)
-) ENGINE=MyISAM AUTO_INCREMENT=45 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=54 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -264,7 +290,7 @@ CREATE TABLE `servico_os` (
 
 LOCK TABLES `servico_os` WRITE;
 /*!40000 ALTER TABLE `servico_os` DISABLE KEYS */;
-INSERT INTO `servico_os` VALUES (1,1,1,5),(2,1,1,6),(3,1,1,12),(4,1,1,14),(5,1,1,18),(6,1,1,20),(7,1,1,21),(8,1,1,22),(9,1,1,23),(10,1,2,5),(11,1,2,14),(12,1,2,20),(13,1,2,22),(14,1,2,23),(15,1,3,5),(16,1,3,18),(17,1,3,20),(18,1,3,23),(19,1,3,24),(20,1,4,5),(21,1,4,12),(22,1,4,21),(23,1,4,22),(24,1,5,18),(25,1,5,21),(26,1,5,23),(27,1,5,24),(28,1,6,25),(29,1,7,6),(30,1,7,12),(31,1,7,14),(32,1,8,21),(33,1,8,22),(34,1,8,24),(35,1,9,12),(36,1,9,14),(37,1,9,20),(38,1,9,23),(39,1,10,14),(40,1,10,18),(41,1,10,20),(42,1,10,21),(43,1,10,23),(44,1,10,25);
+INSERT INTO `servico_os` VALUES (44,13,10,25),(43,13,10,23),(42,13,10,21),(41,13,10,20),(40,13,10,18),(39,13,10,14),(38,13,9,23),(37,13,9,20),(36,13,9,14),(35,13,9,12),(34,13,8,24),(33,13,8,22),(32,13,8,21),(31,13,7,14),(30,13,7,12),(29,13,7,6),(28,13,6,25),(27,13,5,24),(26,13,5,23),(25,13,5,21),(24,13,5,18),(23,13,4,22),(22,13,4,21),(21,13,4,12),(20,13,4,5),(19,13,3,24),(18,13,3,23),(17,13,3,20),(16,13,3,18),(15,13,3,5),(14,13,2,23),(13,13,2,22),(12,13,2,20),(11,13,2,14),(10,13,2,5),(9,13,1,23),(8,13,1,22),(7,13,1,21),(6,13,1,20),(5,13,1,18),(4,13,1,14),(3,13,1,12),(2,13,1,6),(1,13,1,5);
 /*!40000 ALTER TABLE `servico_os` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -277,4 +303,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-11-30  9:08:45
+-- Dump completed on 2016-12-05 13:09:39
